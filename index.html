@@ -266,7 +266,7 @@
         }
 
         .demo-wrap {
-            max-width: 640px;
+            max-width: 680px;
             margin: 48px auto 0;
             display: flex;
             flex-direction: column;
@@ -276,17 +276,19 @@
         .demo-scene {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            gap: 24px;
         }
 
+        /* iPhone frame */
         .demo-phone-frame {
-            background: var(--card-bg);
-            border-radius: 14px;
-            padding: 1rem;
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 6px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            position: relative;
         }
 
         .demo-phone-label {
@@ -295,60 +297,107 @@
             color: var(--gray-light);
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            margin-bottom: 2px;
+            text-align: center;
+            margin-bottom: 8px;
+            position: absolute;
+            top: -24px;
+            left: 0;
+            right: 0;
         }
 
-        .demo-phone-screen {
-            background: #0b1120;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        .demo-phone-frame-inner {
+            background: #000000;
+            border-radius: 36px;
             overflow: hidden;
-            min-height: 320px;
             display: flex;
             flex-direction: column;
+            min-height: 380px;
         }
 
+        /* Dynamic Island */
+        .demo-dynamic-island {
+            width: 80px;
+            height: 18px;
+            background: #1a1a1a;
+            border-radius: 20px;
+            margin: 8px auto 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Status bar */
+        .demo-status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 16px 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .demo-status-time { letter-spacing: 0.02em; }
+
+        .demo-status-icons {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        /* Contact header */
         .demo-phone-header {
-            padding: 10px 14px 8px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 6px 14px 10px;
             display: flex;
             align-items: center;
             gap: 8px;
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
         }
 
         .demo-avatar {
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 11px;
-            font-weight: 500;
+            font-weight: 600;
             flex-shrink: 0;
         }
 
-        .demo-avatar-ava { background: rgba(217, 119, 6, 0.15); color: var(--amber); }
-        .demo-avatar-contractor { background: rgba(255, 255, 255, 0.1); color: var(--white); }
+        .demo-avatar-ava { background: #2c2c2e; color: #0B84FE; }
+        .demo-avatar-contractor { background: #2c2c2e; color: #34C759; }
 
-        .demo-phone-header-name { font-size: 13px; font-weight: 500; color: var(--white); }
-        .demo-phone-header-sub { font-size: 11px; color: var(--gray-light); }
+        .demo-phone-header-name { font-size: 13px; font-weight: 600; color: #fff; }
+        .demo-phone-header-sub { font-size: 11px; color: #8e8e93; }
+
+        /* Messages area */
+        .demo-phone-screen {
+            background: #000000;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
 
         .demo-messages-area {
             flex: 1;
             padding: 12px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             overflow-y: auto;
         }
 
+        /* Bubbles */
         .demo-bubble {
             max-width: 85%;
-            padding: 8px 11px;
-            border-radius: 14px;
+            padding: 9px 14px;
+            border-radius: 18px;
             font-size: 13px;
-            line-height: 1.5;
+            line-height: 1.45;
             opacity: 0;
             transform: translateY(6px);
             transition: opacity 0.35s ease, transform 0.35s ease;
@@ -356,33 +405,36 @@
 
         .demo-bubble.show { opacity: 1; transform: translateY(0); }
 
+        /* Customer phone: incoming = Sarah (dark gray), outgoing = Ava (iMessage blue) */
         .demo-bubble-in {
-            background: rgba(255, 255, 255, 0.08);
-            color: var(--gray-light);
+            background: #1C1C1E;
+            color: #ffffff;
             align-self: flex-start;
             border-bottom-left-radius: 4px;
         }
 
         .demo-bubble-out {
-            background: var(--amber);
-            color: var(--navy);
+            background: #0B84FE;
+            color: #ffffff;
             align-self: flex-end;
             border-bottom-right-radius: 4px;
         }
 
+        /* Owner phone: Ava updates (green SMS style) */
         .demo-bubble-in-teal {
-            background: rgba(217, 119, 6, 0.12);
-            color: var(--amber);
+            background: #34C759;
+            color: #ffffff;
             align-self: flex-start;
             border-bottom-left-radius: 4px;
         }
 
+        /* Typing indicator */
         .demo-typing-indicator {
             display: none;
             align-self: flex-start;
-            padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 14px;
+            padding: 10px 14px;
+            background: #1C1C1E;
+            border-radius: 18px;
             border-bottom-left-radius: 4px;
             gap: 4px;
             align-items: center;
@@ -394,7 +446,7 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: var(--gray-light);
+            background: #8e8e93;
             animation: demo-bounce 1.2s infinite;
         }
 
@@ -406,6 +458,7 @@
             30% { transform: translateY(-4px); }
         }
 
+        /* Flow arrow / badge / controls */
         .demo-flow-arrow {
             display: flex;
             align-items: center;
@@ -506,12 +559,21 @@
         }
 
         @media (max-width: 480px) {
-            .demo-scene { gap: 8px; }
-            .demo-phone-frame { padding: 0.6rem; }
-            .demo-bubble { font-size: 11px; padding: 6px 9px; }
+            .demo-scene { gap: 12px; }
+            .demo-phone-frame { border-radius: 28px; padding: 4px; }
+            .demo-phone-frame-inner { border-radius: 25px; min-height: 320px; }
+            .demo-dynamic-island { width: 60px; height: 14px; margin-top: 6px; }
+            .demo-status-bar { padding: 2px 10px 4px; font-size: 9px; }
+            .demo-status-icons { font-size: 8px; }
+            .demo-bubble { font-size: 11px; padding: 7px 10px; border-radius: 16px; }
+            .demo-bubble-in { border-bottom-left-radius: 4px; }
+            .demo-bubble-out { border-bottom-right-radius: 4px; }
+            .demo-bubble-in-teal { border-bottom-left-radius: 4px; }
+            .demo-phone-header { padding: 4px 10px 8px; }
             .demo-phone-header-name { font-size: 11px; }
-            .demo-phone-header-sub { font-size: 10px; }
-            .demo-phone-screen { min-height: 280px; }
+            .demo-phone-header-sub { font-size: 9px; }
+            .demo-avatar { width: 24px; height: 24px; font-size: 9px; }
+            .demo-phone-label { font-size: 9px; top: -20px; }
         }
 
         /* ── Checklist ───────────────────────── */
@@ -927,36 +989,62 @@
                     <p style="font-size:13px; color:var(--gray-light); margin-top:4px; line-height:1.5;">Texts the customer automatically, then keeps you in the loop</p>
                 </div>
                 <div class="demo-scene">
-                    <div class="demo-phone-frame">
+                    <div style="position:relative; padding-top:28px;">
                         <div class="demo-phone-label">Customer's phone</div>
-                        <div class="demo-phone-screen">
-                            <div class="demo-phone-header">
-                                <div class="demo-avatar demo-avatar-ava">AV</div>
-                                <div>
-                                    <div class="demo-phone-header-name">Ava from Handled Solar</div>
-                                    <div class="demo-phone-header-sub">handled.</div>
+                        <div class="demo-phone-frame">
+                            <div class="demo-phone-frame-inner">
+                                <div class="demo-dynamic-island"></div>
+                                <div class="demo-status-bar">
+                                    <span class="demo-status-time">9:41</span>
+                                    <span class="demo-status-icons">
+                                        <svg width="16" height="11" viewBox="0 0 16 11" fill="white"><rect x="0" y="3" width="3" height="8" rx="0.5" opacity="0.4"/><rect x="4.5" y="2" width="3" height="9" rx="0.5" opacity="0.6"/><rect x="9" y="1" width="3" height="10" rx="0.5" opacity="0.8"/><rect x="13.5" y="0" width="3" height="11" rx="0.5"/></svg>
+                                        <svg width="15" height="11" viewBox="0 0 15 11" fill="none" stroke="white" stroke-width="1"><path d="M7.5 2.5C9.8 2.5 11.8 3.5 13.2 5" opacity="1"/><path d="M7.5 5C8.9 5 10.1 5.6 11 6.5" opacity="0.8"/><circle cx="7.5" cy="9" r="1.2" fill="white" stroke="none"/></svg>
+                                        <svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x="0.5" y="0.5" width="18" height="10" rx="2" stroke="white" stroke-opacity="0.35"/><rect x="19.5" y="3" width="2" height="5" rx="0.5" fill="white" fill-opacity="0.4"/><rect x="1.5" y="1.5" width="14" height="8" rx="1.5" fill="white"/></svg>
+                                    </span>
                                 </div>
-                            </div>
-                            <div class="demo-messages-area" id="customer-msgs">
-                                <div class="demo-typing-indicator" id="customer-typing">
-                                    <div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div>
+                                <div class="demo-phone-screen">
+                                    <div class="demo-phone-header">
+                                        <div class="demo-avatar demo-avatar-ava">AV</div>
+                                        <div>
+                                            <div class="demo-phone-header-name">Ava from Handled Solar</div>
+                                            <div class="demo-phone-header-sub">handled.</div>
+                                        </div>
+                                    </div>
+                                    <div class="demo-messages-area" id="customer-msgs">
+                                        <div class="demo-typing-indicator" id="customer-typing">
+                                            <div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="demo-phone-frame">
+                    <div style="position:relative; padding-top:28px;">
                         <div class="demo-phone-label">Your phone</div>
-                        <div class="demo-phone-screen">
-                            <div class="demo-phone-header">
-                                <div class="demo-avatar demo-avatar-contractor">HP</div>
-                                <div>
-                                    <div class="demo-phone-header-name">handled. updates</div>
-                                    <div class="demo-phone-header-sub">Ava</div>
+                        <div class="demo-phone-frame">
+                            <div class="demo-phone-frame-inner">
+                                <div class="demo-dynamic-island"></div>
+                                <div class="demo-status-bar">
+                                    <span class="demo-status-time">9:41</span>
+                                    <span class="demo-status-icons">
+                                        <svg width="16" height="11" viewBox="0 0 16 11" fill="white"><rect x="0" y="3" width="3" height="8" rx="0.5" opacity="0.4"/><rect x="4.5" y="2" width="3" height="9" rx="0.5" opacity="0.6"/><rect x="9" y="1" width="3" height="10" rx="0.5" opacity="0.8"/><rect x="13.5" y="0" width="3" height="11" rx="0.5"/></svg>
+                                        <svg width="15" height="11" viewBox="0 0 15 11" fill="none" stroke="white" stroke-width="1"><path d="M7.5 2.5C9.8 2.5 11.8 3.5 13.2 5" opacity="1"/><path d="M7.5 5C8.9 5 10.1 5.6 11 6.5" opacity="0.8"/><circle cx="7.5" cy="9" r="1.2" fill="white" stroke="none"/></svg>
+                                        <svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x="0.5" y="0.5" width="18" height="10" rx="2" stroke="white" stroke-opacity="0.35"/><rect x="19.5" y="3" width="2" height="5" rx="0.5" fill="white" fill-opacity="0.4"/><rect x="1.5" y="1.5" width="14" height="8" rx="1.5" fill="white"/></svg>
+                                    </span>
                                 </div>
-                            </div>
-                            <div class="demo-messages-area" id="owner-msgs">
-                                <div class="demo-typing-indicator" id="owner-typing">
-                                    <div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div>
+                                <div class="demo-phone-screen">
+                                    <div class="demo-phone-header">
+                                        <div class="demo-avatar demo-avatar-contractor">HP</div>
+                                        <div>
+                                            <div class="demo-phone-header-name">handled. updates</div>
+                                            <div class="demo-phone-header-sub">Ava</div>
+                                        </div>
+                                    </div>
+                                    <div class="demo-messages-area" id="owner-msgs">
+                                        <div class="demo-typing-indicator" id="owner-typing">
+                                            <div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
