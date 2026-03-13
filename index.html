@@ -79,6 +79,81 @@
             color: var(--amber);
         }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 9px 16px;
+            background: transparent;
+            color: var(--gray-light);
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-dropdown-toggle:hover {
+            color: var(--white);
+        }
+
+        .nav-dropdown-toggle svg {
+            transition: transform 0.2s;
+        }
+
+        .nav-dropdown.open .nav-dropdown-toggle svg {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            min-width: 200px;
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 6px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-dropdown.open .nav-dropdown-menu {
+            display: block;
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 10px 14px;
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--white);
+        }
+
+        .nav-dropdown-menu a.active {
+            color: var(--amber);
+        }
+
         .nav-cta {
             display: inline-block;
             padding: 10px 22px;
@@ -922,7 +997,21 @@
     <nav>
         <div class="nav-inner">
             <a href="#" class="logo">handled<span>.</span></a>
-            <a href="#pricing" class="nav-cta">Start Free Trial</a>
+            <div class="nav-links">
+                <div class="nav-dropdown" id="nav-dropdown">
+                    <button class="nav-dropdown-toggle" onclick="document.getElementById('nav-dropdown').classList.toggle('open')">
+                        Industries <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="lawncare.html">Lawn Care</a>
+                        <a href="roofing.html">Roofing</a>
+                        <a href="hvac.html">HVAC</a>
+                        <a href="plumbing.html">Plumbing</a>
+                        <a href="solar.html">Solar</a>
+                    </div>
+                </div>
+                <a href="#pricing" class="nav-cta">Start Free Trial</a>
+            </div>
         </div>
     </nav>
 
@@ -1298,6 +1387,14 @@
         }
 
         buildDots(-1);
+
+        // ── Dropdown close on outside click ──
+        document.addEventListener('click', function(e) {
+            var dd = document.getElementById('nav-dropdown');
+            if (dd && !dd.contains(e.target)) {
+                dd.classList.remove('open');
+            }
+        });
     </script>
 
 </body>

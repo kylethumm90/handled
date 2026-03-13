@@ -78,6 +78,81 @@
             font-style: normal;
         }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 9px 16px;
+            background: transparent;
+            color: var(--gray);
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-dropdown-toggle:hover {
+            color: var(--white);
+        }
+
+        .nav-dropdown-toggle svg {
+            transition: transform 0.2s;
+        }
+
+        .nav-dropdown.open .nav-dropdown-toggle svg {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            min-width: 200px;
+            background: #1a2b12;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 6px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-dropdown.open .nav-dropdown-menu {
+            display: block;
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 10px 14px;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--white);
+        }
+
+        .nav-dropdown-menu a.active {
+            color: var(--green);
+        }
+
         .nav-btn {
             display: inline-block;
             padding: 9px 20px;
@@ -740,7 +815,21 @@
     <nav class="site-nav">
         <div class="nav-inner">
             <a href="#" class="site-logo">handled<i>.</i></a>
-            <a href="#signup" class="nav-btn">Get early access</a>
+            <div class="nav-links">
+                <div class="nav-dropdown" id="nav-dropdown">
+                    <button class="nav-dropdown-toggle" onclick="document.getElementById('nav-dropdown').classList.toggle('open')">
+                        Industries <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="lawncare.html">Lawn Care</a>
+                        <a href="roofing.html">Roofing</a>
+                        <a href="hvac.html" class="active">HVAC</a>
+                        <a href="plumbing.html">Plumbing</a>
+                        <a href="solar.html">Solar</a>
+                    </div>
+                </div>
+                <a href="#signup" class="nav-btn">Get early access</a>
+            </div>
         </div>
     </nav>
 
@@ -971,15 +1060,15 @@
 
         // ── Demo Widget ─────────────────────
         var seq = [
-            { side:"customer", type:"out",      flow:"new request comes in",  caption:"A homeowner just submitted an AC repair request. Ava texts them in seconds.",             text:"Hey Dan! This is Ava with Comfort Air Pros. I saw you requested an AC repair quote \u2014 what\u2019s going on with your system?" },
-            { side:"customer", type:"in",       flow:"customer replies",      caption:"Dan replies. Ava starts gathering the details.",                                           text:"AC stopped blowing cold air this morning. House is getting hot fast." },
-            { side:"customer", type:"out",      flow:"qualifying the job",    caption:"Ava asks the right questions to assess the situation.",                                    text:"Got it \u2014 sorry to hear that. What type of system do you have? Central air, mini-split? And roughly how old is the unit?" },
-            { side:"customer", type:"in",       flow:"job details collected", caption:"Dan gives Ava the details. Ava moves him toward booking.",                                text:"Central air, about 10 years old. It\u2019s a Carrier unit." },
-            { side:"customer", type:"out",      flow:"diagnostic offered",    caption:"Ava offers the service and asks for the appointment.",                                    text:"We service Carrier units all the time. We can do a same-day or next-day diagnostic for $89 \u2014 when works best for you?" },
-            { side:"owner",    type:"in-green", flow:"you get the update",    caption:"You get a real-time summary while you\u2019re on a job.",                                  text:"New lead: Dan K. \u2014 AC not cooling. 10-yr Carrier central air. Offering $89 diagnostic. Moving to booking." },
-            { side:"customer", type:"in",       flow:"customer says yes",     caption:"Dan\u2019s in. Ava locks in the time.",                                                    text:"Today if possible! Anytime after 2pm." },
-            { side:"customer", type:"out",      flow:"call scheduled",        caption:"Ava confirms the appointment and sets expectations.",                                     text:"You\u2019re booked for today at 3pm. Our tech will diagnose the issue and walk you through options before any work starts." },
-            { side:"owner",    type:"in-green", flow:"call booked",           caption:"Service call locked in \u2014 no phone tag, no back-and-forth. Ava handled it.",           text:"Service call booked: Dan K. \u2014 Today 3:00pm. AC not cooling, 10-yr Carrier. $89 diagnostic. Added to today\u2019s route." },
+            { side:"customer", type:"out",      flow:"new request comes in",       caption:"A homeowner just requested an AC repair quote. Ava texts them in seconds.",                    text:"Hey Dan! This is Ava with Comfort Air Pros. I saw you requested an AC repair quote \u2014 still need help with your system?" },
+            { side:"customer", type:"in",       flow:"customer replies",           caption:"Dan replies. Ava starts gathering the details needed to diagnose the issue.",                   text:"Yes! My AC stopped blowing cold air this morning. House is getting hot." },
+            { side:"customer", type:"out",      flow:"qualifying the job",         caption:"Ava asks the right questions to understand the system and issue.",                              text:"Sorry to hear that! What type of system do you have \u2014 central air, mini-split, or something else? And do you know roughly how old the unit is?" },
+            { side:"customer", type:"in",       flow:"job details collected",      caption:"Dan gives Ava the details. Ava moves him toward booking.",                                     text:"It\u2019s central air, about 10 years old. Carrier unit." },
+            { side:"customer", type:"out",      flow:"diagnostic + booking offer", caption:"Ava confirms they service the brand and offers a diagnostic visit.",                            text:"We service Carrier units all the time. We can send a tech out for a same-day or next-day diagnostic visit \u2014 $89 for the visit. What works best for you?" },
+            { side:"owner",    type:"in-green", flow:"you get the update",         caption:"You get a real-time summary while you\u2019re on a job.",                                       text:"New lead: Dan K. \u2014 AC not cooling. 10-yr Carrier central air. Offering diagnostic. Moving to booking." },
+            { side:"customer", type:"in",       flow:"customer says yes",          caption:"Dan\u2019s in. Ava locks in the time.",                                                        text:"Today if possible! Anytime after 2pm works." },
+            { side:"customer", type:"out",      flow:"call scheduled",             caption:"Ava confirms the service call and sets expectations.",                                          text:"You\u2019re booked for today at 3pm. Our tech will diagnose the issue and walk you through options before any work starts." },
+            { side:"owner",    type:"in-green", flow:"call confirmed",             caption:"From AC emergency to same-day service call \u2014 Ava handled it while you were on the job.",   text:"Service call booked: Dan K. \u2014 Today 3:00pm. AC not cooling, 10-yr Carrier. $89 diagnostic. Added to today\u2019s route." },
         ];
 
         var running = false;
@@ -1057,6 +1146,11 @@
         }
 
         buildDots(-1);
+
+        document.addEventListener('click', function(e) {
+            var dd = document.getElementById('nav-dropdown');
+            if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+        });
     </script>
 
 </body>

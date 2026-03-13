@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>handled. | AI Front Office for Solar Companies</title>
-    <meta name="description" content="handled. texts your solar leads the second they come in, qualifies them, and books the consultation — while you're on an install.">
+    <meta name="description" content="handled. texts your solar leads the second they come in, qualifies them, and books the consultation — while you're on the roof.">
     <style>
         *, *::before, *::after {
             margin: 0;
@@ -76,6 +76,81 @@
         .site-logo i {
             color: var(--green);
             font-style: normal;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 9px 16px;
+            background: transparent;
+            color: var(--gray);
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-dropdown-toggle:hover {
+            color: var(--white);
+        }
+
+        .nav-dropdown-toggle svg {
+            transition: transform 0.2s;
+        }
+
+        .nav-dropdown.open .nav-dropdown-toggle svg {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            min-width: 200px;
+            background: #1a2b12;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 6px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-dropdown.open .nav-dropdown-menu {
+            display: block;
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 10px 14px;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--white);
+        }
+
+        .nav-dropdown-menu a.active {
+            color: var(--green);
         }
 
         .nav-btn {
@@ -740,7 +815,21 @@
     <nav class="site-nav">
         <div class="nav-inner">
             <a href="#" class="site-logo">handled<i>.</i></a>
-            <a href="#signup" class="nav-btn">Get early access</a>
+            <div class="nav-links">
+                <div class="nav-dropdown" id="nav-dropdown">
+                    <button class="nav-dropdown-toggle" onclick="document.getElementById('nav-dropdown').classList.toggle('open')">
+                        Industries <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="lawncare.html">Lawn Care</a>
+                        <a href="roofing.html">Roofing</a>
+                        <a href="hvac.html">HVAC</a>
+                        <a href="plumbing.html">Plumbing</a>
+                        <a href="solar.html" class="active">Solar</a>
+                    </div>
+                </div>
+                <a href="#signup" class="nav-btn">Get early access</a>
+            </div>
         </div>
     </nav>
 
@@ -971,15 +1060,15 @@
 
         // ── Demo Widget ─────────────────────
         var seq = [
-            { side:"customer", type:"out",      flow:"new request comes in",  caption:"A homeowner just requested info about solar. Ava texts them in seconds.",                  text:"Hey Sarah! This is Ava with SunVolt Solar. I saw you requested info about going solar \u2014 are you still looking into it?" },
-            { side:"customer", type:"in",       flow:"customer replies",      caption:"Sarah replies. Ava starts qualifying.",                                                    text:"Yes! We\u2019ve been thinking about it for a while. Our electric bill is over $300 a month." },
-            { side:"customer", type:"out",      flow:"qualifying the lead",   caption:"Ava asks the right questions to qualify the lead.",                                        text:"$300/mo is a lot \u2014 solar can definitely help with that. Quick questions: do you own your home, and roughly how old is your roof?" },
-            { side:"customer", type:"in",       flow:"lead qualified",        caption:"Sarah gives Ava the details. Ava moves her toward booking.",                              text:"Yes, we\u2019ve owned it about 10 years. Roof is pretty new \u2014 maybe 5 years old." },
-            { side:"customer", type:"out",      flow:"consultation offered",  caption:"Ava pitches the value and asks for the appointment.",                                     text:"Perfect \u2014 most homeowners in your area save 40\u201360% on their electric bill with solar. Want me to schedule a free consultation so we can see what you\u2019d qualify for?" },
-            { side:"owner",    type:"in-green", flow:"you get the update",    caption:"You get a real-time summary while you\u2019re on an install.",                              text:"New qualified lead: Sarah M. \u2014 homeowner 10 yrs, 5-yr roof, $300+/mo electric. Moving to booking." },
-            { side:"customer", type:"in",       flow:"customer says yes",     caption:"Sarah\u2019s in. Ava locks in the day.",                                                   text:"Thursday afternoon works great!" },
-            { side:"customer", type:"out",      flow:"consultation scheduled", caption:"Ava confirms the appointment and sets expectations.",                                    text:"You\u2019re all set for Thursday at 2pm. Our consultant will review your roof, usage, and available incentives." },
-            { side:"owner",    type:"in-green", flow:"consultation booked",   caption:"Consultation locked in \u2014 no phone tag, no back-and-forth. Ava handled it.",           text:"Consultation booked: Sarah M. \u2014 Thursday 2:00pm. Homeowner, 5-yr roof, $300/mo electric. On your calendar." },
+            { side:"customer", type:"out",      flow:"new inquiry comes in",   caption:"A homeowner just requested info about solar panels. Ava texts them in seconds.",              text:"Hey Sarah! This is Ava with SunVolt Solar. I saw you requested info about solar panels \u2014 are you still interested in learning more?" },
+            { side:"customer", type:"in",       flow:"customer replies",       caption:"Sarah replies. Ava starts gathering the details needed to qualify the lead.",                  text:"Yeah! We\u2019ve been thinking about it. Our electric bill is over $300/month and it just keeps going up." },
+            { side:"customer", type:"out",      flow:"qualifying the lead",    caption:"Ava asks the right questions to qualify the homeowner.",                                       text:"I hear that a lot! Quick question \u2014 do you own your home? And roughly how old is the roof?" },
+            { side:"customer", type:"in",       flow:"lead details collected", caption:"Sarah gives Ava everything needed. Ava moves her toward booking.",                             text:"Yes, we\u2019ve owned it for about 10 years. Roof is pretty new, maybe 5 years old." },
+            { side:"customer", type:"out",      flow:"value + booking offer",  caption:"Ava shares the value proposition and offers a free consultation.",                             text:"Great news \u2014 most homeowners in your area save 40\u201360% on their electric bill with solar. Want me to schedule a free consultation so we can see what you\u2019d qualify for?" },
+            { side:"owner",    type:"in-green", flow:"you get the update",     caption:"You get a real-time summary while you\u2019re on an install.",                                  text:"New qualified lead: Sarah M. \u2014 homeowner 10 yrs, 5-yr roof, $300+/mo electric. Moving to booking." },
+            { side:"customer", type:"in",       flow:"customer says yes",      caption:"Sarah\u2019s in. Ava locks in the day.",                                                       text:"That sounds great! Thursday afternoon works for me." },
+            { side:"customer", type:"out",      flow:"consultation scheduled", caption:"Ava confirms the consultation and sets expectations.",                                         text:"You\u2019re all set for Thursday at 2pm. Our consultant will review your roof, usage, and available incentives." },
+            { side:"owner",    type:"in-green", flow:"consultation confirmed", caption:"From solar inquiry to booked consultation \u2014 Ava handled it while you were on an install.", text:"Consultation booked: Sarah M. \u2014 Thursday 2:00pm. Homeowner, 5-yr roof, $300/mo electric. On your calendar." },
         ];
 
         var running = false;
@@ -1057,6 +1146,11 @@
         }
 
         buildDots(-1);
+
+        document.addEventListener('click', function(e) {
+            var dd = document.getElementById('nav-dropdown');
+            if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+        });
     </script>
 
 </body>
