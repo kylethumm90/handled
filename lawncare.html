@@ -1050,12 +1050,41 @@
         // ── Signup form ─────────────────────
         document.getElementById('signup-form').addEventListener('submit', function(e) {
             e.preventDefault();
+            var form = this;
             var email = document.getElementById('email-input').value.trim();
-            if (email && email.indexOf('@') > 0) {
-                this.parentElement.innerHTML =
-                    '<p class="section-label">Early Access</p>' +
-                    '<p class="cta-success">You\'re on the list! We\'ll be in touch soon.</p>';
+            if (!email || email.indexOf('@') < 1) {
+                document.getElementById('email-input').focus();
+                return;
             }
+            var btn = form.querySelector('button[type="submit"]');
+            var origText = btn.textContent;
+            btn.textContent = 'Submitting...';
+            btn.disabled = true;
+            fetch('https://services.leadconnectorhq.com/hooks/9fPcgvYEwoWt8LWdzp9n/webhook-trigger/jNaqANKwoKahVhhhPfwe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: email,
+                    source: 'handled-lawncare-landing'
+                })
+            }).then(function(res) {
+                if (res.ok) {
+                    form.parentElement.innerHTML =
+                        '<p class="section-label">Early Access</p>' +
+                        '<p class="cta-success">You\'re on the list! We\'ll be in touch soon.</p>';
+                } else { throw new Error(); }
+            }).catch(function() {
+                btn.textContent = origText;
+                btn.disabled = false;
+                var err = form.querySelector('.form-error');
+                if (!err) {
+                    err = document.createElement('p');
+                    err.className = 'form-error';
+                    err.style.cssText = 'color:#ef4444;font-size:14px;margin-top:8px;';
+                    form.appendChild(err);
+                }
+                err.textContent = 'Something went wrong. Please try again.';
+            });
         });
 
         // ── Demo Widget ─────────────────────
