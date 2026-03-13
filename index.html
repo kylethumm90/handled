@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>handled. | Your AI Team for Home Service Contractors</title>
+    <meta name="description" content="Your AI team answers calls, texts leads, books appointments, gets reviews, and reports results. Live in 90 seconds. $299/month.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0f172a;
+            --amber: #d97706;
+            --amber-hover: #b45309;
+            --white: #ffffff;
+            --gray-light: #94a3b8;
+            --gray-dark: #1e293b;
+            --card-bg: #1e293b;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--navy);
+            color: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── Nav ─────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--amber);
+        }
+
+        .nav-cta {
+            display: inline-block;
+            padding: 10px 22px;
+            background: var(--amber);
+            color: var(--navy);
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--amber-hover);
+        }
+
+        /* ── Shared ──────────────────────────── */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 16px;
+        }
+
+        h1, h2, h3 {
+            letter-spacing: -0.025em;
+            line-height: 1.15;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 36px;
+            background: var(--amber);
+            color: var(--navy);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .btn:hover {
+            background: var(--amber-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* fade-in on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Hero ────────────────────────────── */
+        .hero {
+            padding: 160px 0 120px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            max-width: 720px;
+            margin: 0 auto 24px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gray-light);
+            max-width: 560px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        /* ── How It Works ────────────────────── */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 36px 32px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--amber);
+            color: var(--navy);
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .step-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .step-card p {
+            color: var(--gray-light);
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+
+        /* ── Meet Your Team ──────────────────── */
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px 32px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .team-card .team-name {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .team-card .team-name span {
+            color: var(--amber);
+        }
+
+        .team-card .team-role {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--amber);
+            letter-spacing: 0.04em;
+            margin-bottom: 20px;
+        }
+
+        .team-card p {
+            color: var(--gray-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ── Checklist ───────────────────────── */
+        .checklist {
+            text-align: center;
+            background: var(--navy);
+        }
+
+        .checklist-list {
+            list-style: none;
+            display: inline-block;
+            text-align: left;
+            margin-top: 48px;
+        }
+
+        .checklist-list li {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .checklist-list li::before {
+            content: '';
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d97706' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .checklist-list .handled-item {
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-top: 8px;
+        }
+
+        .checklist-list .handled-item span {
+            color: var(--amber);
+        }
+
+        /* ── Before & After ──────────────────── */
+        .ba-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .ba-card {
+            border-radius: 16px;
+            padding: 40px 32px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .ba-card.before {
+            background: var(--card-bg);
+        }
+
+        .ba-card.after {
+            background: rgba(217, 119, 6, 0.08);
+            border-color: rgba(217, 119, 6, 0.2);
+        }
+
+        .ba-card h3 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 20px;
+        }
+
+        .ba-card.before h3 {
+            color: var(--gray-light);
+        }
+
+        .ba-card.after h3 {
+            color: var(--amber);
+        }
+
+        .ba-card p {
+            color: var(--gray-light);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .ba-card.after p {
+            color: var(--white);
+        }
+
+        /* ── Pricing ─────────────────────────── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px 32px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+        }
+
+        .price-card.featured {
+            border-color: var(--amber);
+            background: rgba(217, 119, 6, 0.06);
+        }
+
+        .badge {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--amber);
+            color: var(--navy);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 5px 16px;
+            border-radius: 20px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .price-card .plan-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .price-card .plan-tagline {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .price-card .plan-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .price-card .plan-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--gray-light);
+        }
+
+        .price-card .plan-includes {
+            list-style: none;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .price-card .plan-includes li {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .price-card .plan-includes li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d97706' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .price-card .btn {
+            display: block;
+            text-align: center;
+            margin-top: 28px;
+            width: 100%;
+        }
+
+        .price-card .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--white);
+        }
+
+        .price-card .btn-outline:hover {
+            border-color: var(--amber);
+            color: var(--amber);
+            background: transparent;
+        }
+
+        /* ── Guarantee ───────────────────────── */
+        .guarantee {
+            text-align: center;
+        }
+
+        .guarantee-box {
+            max-width: 680px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 48px 36px;
+            border: 1px solid rgba(217, 119, 6, 0.2);
+        }
+
+        .guarantee-box h2 {
+            font-size: 1.6rem;
+            margin-bottom: 24px;
+        }
+
+        .guarantee-box p {
+            color: var(--gray-light);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* ── Final CTA ───────────────────────── */
+        .final-cta {
+            text-align: center;
+            padding: 80px 0 100px;
+        }
+
+        .final-cta h2 {
+            font-size: 2.2rem;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        /* ── Footer ──────────────────────────── */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 48px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-domain {
+            color: var(--gray-light);
+            font-size: 0.85rem;
+        }
+
+        /* ── Responsive ──────────────────────── */
+        @media (min-width: 768px) {
+            section {
+                padding: 120px 0;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero {
+                padding: 200px 0 140px;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ba-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+                align-items: start;
+            }
+
+            .price-card.featured {
+                transform: scale(1.04);
+            }
+
+            .checklist-list li {
+                font-size: 1.5rem;
+            }
+
+            .checklist-list .handled-item {
+                font-size: 1.75rem;
+            }
+
+            .final-cta h2 {
+                font-size: 2.8rem;
+            }
+
+            .footer-inner {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">handled<span>.</span></a>
+            <a href="#pricing" class="nav-cta">Start Free Trial</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="fade-in">You show up to the job. We handle everything else.</h1>
+            <p class="fade-in">Your AI team answers calls, texts leads, books appointments, gets reviews, and reports results. Live in 90 seconds. $299/month.</p>
+            <a href="#pricing" class="btn fade-in">Start Your 7-Day Front Office Takeover</a>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works">
+        <div class="container">
+            <p class="section-label fade-in">How It Works</p>
+            <h2 class="fade-in">Live in 90 seconds. Seriously.</h2>
+            <div class="steps-grid">
+                <div class="step-card fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Sign up in 90 seconds</h3>
+                    <p>Tap-only onboarding. Pick your trade. Forward your phone. Done.</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Your AI team goes to work</h3>
+                    <p>Ava answers calls, texts leads back in 8 seconds, follows up 5 times, and books appointments. Stella gets reviews and referrals.</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">3</div>
+                    <h3>Check your results Monday morning</h3>
+                    <p>Get a weekly text with leads contacted, appointments booked, and reviews earned.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet Your Team -->
+    <section id="team">
+        <div class="container">
+            <p class="section-label fade-in">Meet Your Team</p>
+            <h2 class="fade-in">They never call in sick.</h2>
+            <div class="team-grid">
+                <div class="team-card fade-in">
+                    <p class="team-name">Ava<span>.</span></p>
+                    <p class="team-role">AI Front Office Manager</p>
+                    <p>Answers every call. Texts every lead back in 8 seconds. Follows up 5 times. Books appointments. Sends you a text when it's done.</p>
+                </div>
+                <div class="team-card fade-in">
+                    <p class="team-name">Stella<span>.</span></p>
+                    <p class="team-role">AI Growth Manager</p>
+                    <p>Requests reviews after every job. Writes the review draft for your customers. Generates referrals. Reactivates past customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Checklist -->
+    <section class="checklist">
+        <div class="container">
+            <ul class="checklist-list fade-in">
+                <li>Calls answered.</li>
+                <li>Leads followed up.</li>
+                <li>Appointments booked.</li>
+                <li>Reviews requested.</li>
+                <li>Referrals generated.</li>
+                <li>Results reported.</li>
+                <li class="handled-item">handled<span>.</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Before & After -->
+    <section id="before-after">
+        <div class="container">
+            <p class="section-label fade-in">The Difference</p>
+            <h2 class="fade-in">Before and after your AI team.</h2>
+            <div class="ba-grid">
+                <div class="ba-card before fade-in">
+                    <h3>Before</h3>
+                    <p>Wake up. Check voicemails. Call back leads from last night. Miss 3 calls on the roof. Forget to ask for a review. Feel guilty about the leads you dropped. Repeat.</p>
+                </div>
+                <div class="ba-card after fade-in">
+                    <h3>After</h3>
+                    <p>Wake up. Check your text from Ava: "2 appointments booked yesterday." Do the work. Get a text from Stella: "Sarah left you a 5-star review." Check your Monday morning text: "12 leads, 6 booked, 4 new reviews. Handled."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing">
+        <div class="container">
+            <div style="text-align:center;">
+                <p class="section-label fade-in">Pricing</p>
+                <h2 class="fade-in">Simple pricing. No contracts.</h2>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card fade-in">
+                    <p class="plan-name">Basic</p>
+                    <p class="plan-tagline">Your front office covered.</p>
+                    <p class="plan-price">$149<span>/month</span></p>
+                    <ul class="plan-includes">
+                        <li>Ava - AI Front Office Manager</li>
+                        <li>Unlimited leads</li>
+                        <li>Unlimited texts</li>
+                        <li>Unlimited calls</li>
+                        <li>No contracts</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Get Started</a>
+                </div>
+                <div class="price-card featured fade-in">
+                    <div class="badge">Most Popular</div>
+                    <p class="plan-name">Starter</p>
+                    <p class="plan-tagline">Your AI team.</p>
+                    <p class="plan-price">$299<span>/month</span></p>
+                    <ul class="plan-includes">
+                        <li>Ava - AI Front Office Manager</li>
+                        <li>Stella - AI Growth Manager</li>
+                        <li>Unlimited leads</li>
+                        <li>Unlimited texts</li>
+                        <li>Unlimited calls</li>
+                        <li>No contracts</li>
+                    </ul>
+                    <a href="#" class="btn">Start Free Trial</a>
+                </div>
+                <div class="price-card fade-in">
+                    <p class="plan-name">Pro</p>
+                    <p class="plan-tagline">You see everything.</p>
+                    <p class="plan-price">$799<span>/month</span></p>
+                    <ul class="plan-includes">
+                        <li>Ava - AI Front Office Manager</li>
+                        <li>Stella - AI Growth Manager</li>
+                        <li>Scout - AI Analytics</li>
+                        <li>Unlimited leads</li>
+                        <li>Unlimited texts</li>
+                        <li>Unlimited calls</li>
+                        <li>No contracts</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Guarantee -->
+    <section class="guarantee">
+        <div class="container">
+            <div class="guarantee-box fade-in">
+                <p class="section-label">The Guarantee</p>
+                <h2>The 7-Day Front Office Takeover</h2>
+                <p>$1,500 in value. $0 cost. If your AI team doesn't book an appointment, get you reviews, or show you where you're losing money in 7 days, we extend your trial free. After 7 days, keep your team for $299/month. If your first month isn't worth it, full refund.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="fade-in">You show up to the job.<br>We handle everything else.</h2>
+            <a href="#pricing" class="btn fade-in">Start Your Free Trial</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <a href="#" class="logo">handled<span>.</span></a>
+                <div class="footer-links">
+                    <a href="#pricing">Pricing</a>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                </div>
+                <p class="footer-domain">usehandled.ai</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
