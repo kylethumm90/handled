@@ -260,6 +260,260 @@
             line-height: 1.7;
         }
 
+        /* ── Demo Widget ─────────────────────── */
+        .demo-section {
+            text-align: center;
+        }
+
+        .demo-wrap {
+            max-width: 640px;
+            margin: 48px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .demo-scene {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .demo-phone-frame {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .demo-phone-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--gray-light);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 2px;
+        }
+
+        .demo-phone-screen {
+            background: #0b1120;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .demo-phone-header {
+            padding: 10px 14px 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .demo-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .demo-avatar-ava { background: rgba(217, 119, 6, 0.15); color: var(--amber); }
+        .demo-avatar-contractor { background: rgba(255, 255, 255, 0.1); color: var(--white); }
+
+        .demo-phone-header-name { font-size: 13px; font-weight: 500; color: var(--white); }
+        .demo-phone-header-sub { font-size: 11px; color: var(--gray-light); }
+
+        .demo-messages-area {
+            flex: 1;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow-y: auto;
+        }
+
+        .demo-bubble {
+            max-width: 85%;
+            padding: 8px 11px;
+            border-radius: 14px;
+            font-size: 13px;
+            line-height: 1.5;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .demo-bubble.show { opacity: 1; transform: translateY(0); }
+
+        .demo-bubble-in {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--gray-light);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .demo-bubble-out {
+            background: var(--amber);
+            color: var(--navy);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .demo-bubble-in-teal {
+            background: rgba(217, 119, 6, 0.12);
+            color: var(--amber);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .demo-typing-indicator {
+            display: none;
+            align-self: flex-start;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            border-bottom-left-radius: 4px;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .demo-typing-indicator.show { display: flex; }
+
+        .demo-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            animation: demo-bounce 1.2s infinite;
+        }
+
+        .demo-dot:nth-child(2) { animation-delay: 0.2s; }
+        .demo-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes demo-bounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-4px); }
+        }
+
+        .demo-flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 4px 0;
+        }
+
+        .demo-flow-arrow-line { height: 1px; flex: 1; background: rgba(255, 255, 255, 0.1); }
+
+        .demo-flow-badge {
+            font-size: 11px;
+            font-weight: 500;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(217, 119, 6, 0.15);
+            color: var(--amber);
+            white-space: nowrap;
+            transition: opacity 0.3s;
+        }
+
+        .demo-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .demo-btn {
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: transparent;
+            color: var(--white);
+            font-family: inherit;
+            transition: background 0.15s, border-color 0.15s;
+        }
+
+        .demo-btn:hover { border-color: rgba(255, 255, 255, 0.3); }
+        .demo-btn:disabled { opacity: 0.4; cursor: default; }
+
+        .demo-btn-primary {
+            background: var(--amber);
+            color: var(--navy);
+            border-color: var(--amber);
+        }
+
+        .demo-btn-primary:hover { background: var(--amber-hover); border-color: var(--amber-hover); }
+
+        .demo-step-dots { display: flex; gap: 6px; align-items: center; }
+
+        .demo-step-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .demo-step-dot.active { background: var(--amber); transform: scale(1.3); }
+        .demo-step-dot.done { background: #22c55e; }
+
+        .demo-caption {
+            text-align: center;
+            font-size: 13px;
+            color: var(--gray-light);
+            line-height: 1.5;
+            min-height: 36px;
+        }
+
+        .demo-ava-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--amber);
+            background: rgba(217, 119, 6, 0.12);
+            border-radius: 20px;
+            padding: 2px 8px;
+            margin-bottom: 6px;
+        }
+
+        .demo-ava-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--amber);
+            animation: demo-pulse 1.5s infinite;
+        }
+
+        @keyframes demo-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @media (max-width: 480px) {
+            .demo-scene { gap: 8px; }
+            .demo-phone-frame { padding: 0.6rem; }
+            .demo-bubble { font-size: 11px; padding: 6px 9px; }
+            .demo-phone-header-name { font-size: 11px; }
+            .demo-phone-header-sub { font-size: 10px; }
+            .demo-phone-screen { min-height: 280px; }
+        }
+
         /* ── Checklist ───────────────────────── */
         .checklist {
             text-align: center;
@@ -662,6 +916,67 @@
         </div>
     </section>
 
+    <!-- See Ava in Action (Demo) -->
+    <section class="demo-section" id="demo">
+        <div class="container">
+            <p class="section-label fade-in">See It In Action</p>
+            <h2 class="fade-in">Watch Ava handle a lead in real time.</h2>
+            <div class="demo-wrap fade-in">
+                <div style="text-align:center; padding-bottom: 4px;">
+                    <span class="demo-ava-badge"><span class="demo-ava-dot"></span>Ava — AI front office manager</span>
+                    <p style="font-size:13px; color:var(--gray-light); margin-top:4px; line-height:1.5;">Texts the customer automatically, then keeps you in the loop</p>
+                </div>
+                <div class="demo-scene">
+                    <div class="demo-phone-frame">
+                        <div class="demo-phone-label">Customer's phone</div>
+                        <div class="demo-phone-screen">
+                            <div class="demo-phone-header">
+                                <div class="demo-avatar demo-avatar-ava">AV</div>
+                                <div>
+                                    <div class="demo-phone-header-name">Ava from Handled Solar</div>
+                                    <div class="demo-phone-header-sub">handled.</div>
+                                </div>
+                            </div>
+                            <div class="demo-messages-area" id="customer-msgs">
+                                <div class="demo-typing-indicator" id="customer-typing">
+                                    <div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-phone-frame">
+                        <div class="demo-phone-label">Your phone</div>
+                        <div class="demo-phone-screen">
+                            <div class="demo-phone-header">
+                                <div class="demo-avatar demo-avatar-contractor">HP</div>
+                                <div>
+                                    <div class="demo-phone-header-name">handled. updates</div>
+                                    <div class="demo-phone-header-sub">Ava</div>
+                                </div>
+                            </div>
+                            <div class="demo-messages-area" id="owner-msgs">
+                                <div class="demo-typing-indicator" id="owner-typing">
+                                    <div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-flow-arrow">
+                    <div class="demo-flow-arrow-line"></div>
+                    <div class="demo-flow-badge" id="flow-label">waiting to start</div>
+                    <div class="demo-flow-arrow-line"></div>
+                </div>
+                <div class="demo-caption" id="demo-caption">See how Ava handles a new lead from first contact to booked appointment.</div>
+                <div class="demo-controls">
+                    <button class="demo-btn" id="reset-btn" onclick="resetDemo()" style="display:none;">Replay</button>
+                    <div class="demo-step-dots" id="demo-dots"></div>
+                    <button class="demo-btn demo-btn-primary" id="start-btn" onclick="runDemo()">Start demo</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- The Checklist -->
     <section class="checklist">
         <div class="container">
@@ -801,6 +1116,98 @@
         document.querySelectorAll('.fade-in').forEach(function(el) {
             observer.observe(el);
         });
+
+        // ── Demo Widget ──────────────────────────
+        var demoSequence = [
+            { side: "customer", type: "out",     flow: "new lead comes in",  caption: "A new solar lead just came in. Ava responds instantly \u2014 no delay.",                            text: "Hi Sarah! This is Ava with Handled Solar. I see you requested info about solar \u2014 are you still interested in a quote?" },
+            { side: "customer", type: "in",      flow: "customer replies",   caption: "Sarah replies. Ava qualifies her in real time.",                                                text: "Yes! We\u2019ve been thinking about it for a while. Do you guys service Warwick?" },
+            { side: "customer", type: "out",     flow: "customer replies",   caption: "Ava confirms coverage and starts qualifying.",                                                  text: "We do! We\u2019re one of the top solar installers in Rhode Island. Quick question \u2014 do you own your home?" },
+            { side: "customer", type: "in",      flow: "lead qualified",     caption: "She\u2019s a homeowner. Ava moves her toward booking and pings you.",                                text: "Yes, we\u2019ve owned it for about 8 years." },
+            { side: "customer", type: "out",     flow: "lead qualified",     caption: "Ava pitches the value and asks for the appointment.",                                           text: "Most homeowners in your area save 40\u201360% on their electric bill. Can I get you on the calendar with one of our consultants this week?" },
+            { side: "owner",    type: "in-teal", flow: "you get the update", caption: "You get a real-time update so you\u2019re always in the loop.",                                      text: "New qualified lead: Sarah M. \u2014 Warwick, RI. Homeowner, 8 yrs. Interested in solar. Moving her to booking now." },
+            { side: "customer", type: "in",      flow: "appointment booked", caption: "Sarah picks a time. Ava handles the confirmation.",                                             text: "Thursday afternoon works for me!" },
+            { side: "customer", type: "out",     flow: "appointment booked", caption: "Ava confirms with Sarah and locks in the appointment.",                                         text: "You\u2019re all set for Thursday at 2pm. We\u2019ll send a reminder that morning. Talk soon!" },
+            { side: "owner",    type: "in-teal", flow: "booked + confirmed", caption: "From new lead to booked appointment \u2014 no manual follow-up needed.",                             text: "Appointment confirmed: Sarah M. \u2014 Thursday 2:00pm. On your calendar. I\u2019ll text her a reminder Thursday morning." },
+        ];
+
+        var TYPING_MS = 800;
+        var PAUSE_BETWEEN = 600;
+        var demoRunning = false;
+
+        function buildDots(active) {
+            var d = document.getElementById("demo-dots");
+            d.innerHTML = "";
+            for (var i = 0; i < 5; i++) {
+                var dot = document.createElement("div");
+                dot.className = "demo-step-dot" + (i < active ? " done" : i === active ? " active" : "");
+                d.appendChild(dot);
+            }
+        }
+
+        function stageForIndex(i) {
+            if (i <= 0) return 0;
+            if (i <= 2) return 1;
+            if (i <= 5) return 2;
+            if (i <= 7) return 3;
+            return 4;
+        }
+
+        function demoSleep(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
+
+        function addDemoBubble(containerId, typingId, type, text) {
+            return new Promise(function(resolve) {
+                var t = document.getElementById(typingId);
+                t.classList.add("show");
+                var area = document.getElementById(containerId);
+                area.scrollTop = area.scrollHeight;
+                demoSleep(TYPING_MS).then(function() {
+                    t.classList.remove("show");
+                    var b = document.createElement("div");
+                    b.className = "demo-bubble demo-bubble-" + type;
+                    b.textContent = text;
+                    area.insertBefore(b, t);
+                    demoSleep(30).then(function() {
+                        b.classList.add("show");
+                        area.scrollTop = area.scrollHeight;
+                        resolve();
+                    });
+                });
+            });
+        }
+
+        async function runDemo() {
+            if (demoRunning) return;
+            demoRunning = true;
+            document.getElementById("start-btn").style.display = "none";
+            for (var i = 0; i < demoSequence.length; i++) {
+                var s = demoSequence[i];
+                document.getElementById("flow-label").textContent = s.flow;
+                document.getElementById("demo-caption").textContent = s.caption;
+                buildDots(stageForIndex(i));
+                var containerId = s.side === "customer" ? "customer-msgs" : "owner-msgs";
+                var typingId = s.side === "customer" ? "customer-typing" : "owner-typing";
+                await addDemoBubble(containerId, typingId, s.type, s.text);
+                await demoSleep(PAUSE_BETWEEN);
+            }
+            buildDots(5);
+            document.getElementById("flow-label").textContent = "all done";
+            document.getElementById("demo-caption").textContent = "From new lead to booked appointment \u2014 no manual follow-up needed.";
+            document.getElementById("reset-btn").style.display = "inline-block";
+            demoRunning = false;
+        }
+
+        function resetDemo() {
+            document.getElementById("customer-msgs").innerHTML = '<div class="demo-typing-indicator" id="customer-typing"><div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div></div>';
+            document.getElementById("owner-msgs").innerHTML = '<div class="demo-typing-indicator" id="owner-typing"><div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div></div>';
+            document.getElementById("flow-label").textContent = "waiting to start";
+            document.getElementById("demo-caption").textContent = "See how Ava handles a new lead from first contact to booked appointment.";
+            document.getElementById("reset-btn").style.display = "none";
+            document.getElementById("start-btn").style.display = "inline-block";
+            buildDots(-1);
+            demoRunning = false;
+        }
+
+        buildDots(-1);
     </script>
 
 </body>
