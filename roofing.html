@@ -816,8 +816,8 @@
         <div class="nav-inner">
             <a href="#" class="site-logo">handled<i>.</i></a>
             <div class="nav-links">
-                <div class="nav-dropdown" id="nav-dropdown">
-                    <button class="nav-dropdown-toggle" onclick="document.getElementById('nav-dropdown').classList.toggle('open')">
+                <div class="nav-dropdown" id="nav-industries">
+                    <button class="nav-dropdown-toggle" onclick="toggleDropdown('nav-industries')">
                         Industries <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
                     </button>
                     <div class="nav-dropdown-menu">
@@ -829,6 +829,14 @@
                         <a href="pestcontrol.html">Pest Control</a>
                         <a href="windowdoor.html">Window & Door</a>
                         <a href="gutters.html">Gutters</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown" id="nav-demos">
+                    <button class="nav-dropdown-toggle" onclick="toggleDropdown('nav-demos')">
+                        Demos <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="demo-reviews.html">Review Generation</a>
                     </div>
                 </div>
                 <a href="#signup" class="nav-btn">Get early access</a>
@@ -1179,9 +1187,17 @@
 
         buildDots(-1);
 
+        function toggleDropdown(id) {
+            var all = document.querySelectorAll('.nav-dropdown');
+            all.forEach(function(dd) {
+                if (dd.id !== id) dd.classList.remove('open');
+            });
+            document.getElementById(id).classList.toggle('open');
+        }
         document.addEventListener('click', function(e) {
-            var dd = document.getElementById('nav-dropdown');
-            if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+            if (!e.target.closest('.nav-dropdown')) {
+                document.querySelectorAll('.nav-dropdown').forEach(function(dd) { dd.classList.remove('open'); });
+            }
         });
     </script>
 

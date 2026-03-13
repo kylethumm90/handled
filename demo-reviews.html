@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>handled. | Review Generation Demo</title>
+    <meta name="description" content="Watch Ava and Stella work together to generate 5-star reviews and intercept negative feedback before it hits Google.">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0f172a;
+            --amber: #d97706;
+            --dark: #1e293b;
+            --light: #e2e8f0;
+            --med: #94a3b8;
+            --green: #10b981;
+            --red: #ef4444;
+            --msg-bg: #334155;
+            --blue: #3b82f6;
+            --gray-border: rgba(255, 255, 255, 0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: radial-gradient(ellipse at 30% 20%, rgba(217,119,6,0.04) 0%, transparent 50%), linear-gradient(160deg, #04080f 0%, #0f172a 40%, #0c1525 100%);
+            color: var(--light);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        /* ── Nav ─────────────────────────── */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-border);
+        }
+
+        .nav-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .site-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .site-logo i {
+            color: var(--amber);
+            font-style: normal;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 9px 16px;
+            background: transparent;
+            color: var(--med);
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-dropdown-toggle:hover {
+            color: var(--light);
+        }
+
+        .nav-dropdown-toggle svg {
+            transition: transform 0.2s;
+        }
+
+        .nav-dropdown.open .nav-dropdown-toggle svg {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            min-width: 200px;
+            background: var(--dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 6px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-dropdown.open .nav-dropdown-menu {
+            display: block;
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 10px 14px;
+            color: var(--med);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--light);
+        }
+
+        .nav-dropdown-menu a.active {
+            color: var(--amber);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 9px 20px;
+            background: var(--amber);
+            color: var(--navy);
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: #b45309;
+        }
+
+        /* ── Demo Page Content ───────────── */
+        .demo-page {
+            padding: 120px 20px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: 36px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .demo-header .logo-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+
+        .demo-header .logo-text span:first-child {
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--light);
+            letter-spacing: -0.5px;
+        }
+
+        .demo-header .logo-text span:last-child {
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--amber);
+        }
+
+        .demo-header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--light);
+            margin-bottom: 8px;
+        }
+
+        .demo-header p {
+            font-size: 13px;
+            color: var(--med);
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ── Start Buttons ───────────────── */
+        .start-buttons {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .start-btn {
+            padding: 14px 32px;
+            border-radius: 100px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            transition: transform 0.15s;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .start-btn-positive {
+            border: none;
+            background: var(--green);
+            color: white;
+        }
+
+        .start-btn-negative {
+            border: 2px solid var(--red);
+            background: transparent;
+            color: var(--red);
+        }
+
+        /* ── Status Indicator ────────────── */
+        .status-indicator {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 28px;
+            background: rgba(255,255,255,0.04);
+            padding: 10px 24px;
+            border-radius: 100px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .status-indicator.visible {
+            display: flex;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--amber);
+            animation: bounce 1.4s infinite;
+        }
+
+        .status-dot.finished {
+            background: var(--green);
+            animation: none;
+        }
+
+        .status-text {
+            font-size: 13px;
+            color: var(--light);
+            font-weight: 500;
+        }
+
+        /* ── Phones Container ────────────── */
+        .phones-container {
+            display: flex;
+            gap: 48px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ── Phone ───────────────────────── */
+        .phone-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .phone-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.5s;
+            color: rgba(148,163,184,0.5);
+        }
+
+        .phone-col.active .phone-label {
+            color: var(--amber);
+        }
+
+        .phone-frame {
+            width: 370px;
+            height: 720px;
+            border-radius: 44px;
+            background: #000;
+            border: 3px solid #222;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.5s, transform 0.5s, opacity 0.5s;
+            flex-shrink: 0;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+            transform: scale(0.98);
+            opacity: 0.6;
+        }
+
+        .phone-col.active .phone-frame {
+            box-shadow: 0 0 40px rgba(217,119,6,0.15), 0 25px 60px rgba(0,0,0,0.6);
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .phone-notch {
+            height: 34px;
+            background: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .phone-notch-bar {
+            width: 80px;
+            height: 5px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .phone-header {
+            background: var(--dark);
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .phone-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--navy), var(--dark));
+            border: 2px solid var(--amber);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .phone-header-name {
+            color: var(--light);
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .phone-header-sub {
+            color: var(--med);
+            font-size: 11px;
+        }
+
+        .messages-area {
+            flex: 1;
+            background: var(--navy);
+            padding: 14px 12px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .messages-area::-webkit-scrollbar { width: 4px; }
+        .messages-area::-webkit-scrollbar-track { background: transparent; }
+        .messages-area::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 4px; }
+
+        .phone-input-bar {
+            background: var(--dark);
+            padding: 14px 18px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .phone-input-fake {
+            background: rgba(255,255,255,0.05);
+            border-radius: 22px;
+            padding: 11px 16px;
+            color: rgba(148,163,184,0.4);
+            font-size: 13px;
+        }
+
+        /* ── Message Bubbles ─────────────── */
+        .bubble-wrap {
+            display: flex;
+            flex-direction: column;
+            animation: msgIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-bottom: 2px;
+        }
+
+        .bubble-wrap.from-user {
+            align-items: flex-end;
+        }
+
+        .bubble-wrap.from-agent {
+            align-items: flex-start;
+        }
+
+        .bubble-agent-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 3px;
+            margin-left: 6px;
+        }
+
+        .bubble-agent-label.stella { color: var(--amber); }
+        .bubble-agent-label.ava { color: #38bdf8; }
+
+        .bubble {
+            max-width: 85%;
+            padding: 11px 15px;
+            color: var(--light);
+            font-size: 14px;
+            line-height: 1.55;
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .bubble.user {
+            border-radius: 18px 18px 4px 18px;
+            background: var(--blue);
+        }
+
+        .bubble.agent {
+            border-radius: 18px 18px 18px 4px;
+            background: var(--msg-bg);
+        }
+
+        .bubble.alert {
+            background: rgba(239,68,68,0.15);
+            border-color: rgba(239,68,68,0.4);
+        }
+
+        .bubble.success {
+            background: rgba(16,185,129,0.12);
+            border-color: rgba(16,185,129,0.3);
+        }
+
+        .bubble.review-draft {
+            background: rgba(245,158,11,0.1);
+            border-color: rgba(245,158,11,0.25);
+            font-style: italic;
+            color: #fcd34d;
+        }
+
+        .bubble.link {
+            color: #60a5fa;
+            text-decoration: underline;
+        }
+
+        /* ── System Message ──────────────── */
+        .system-msg {
+            text-align: center;
+            padding: 16px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .system-msg .line {
+            height: 1px;
+            flex: 1;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .system-msg span {
+            font-size: 11px;
+            color: var(--amber);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* ── Typing Indicator ────────────── */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 4px;
+        }
+
+        .typing-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        .typing-label.stella { color: var(--amber); }
+        .typing-label.ava { color: #38bdf8; }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dots .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            animation: bounce 1.4s ease-in-out infinite;
+        }
+
+        .typing-dots .dot.stella { background: var(--amber); }
+        .typing-dots .dot.ava { background: #38bdf8; }
+
+        .typing-dots .dot:nth-child(2) { animation-delay: 0.15s; }
+        .typing-dots .dot:nth-child(3) { animation-delay: 0.3s; }
+
+        /* ── Restart Button ──────────────── */
+        .restart-btn {
+            display: none;
+            margin-top: 36px;
+            padding: 14px 40px;
+            border-radius: 100px;
+            border: none;
+            background: var(--amber);
+            color: var(--navy);
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            animation: glow 2s infinite;
+            transition: transform 0.15s;
+        }
+
+        .restart-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .restart-btn.visible {
+            display: inline-block;
+        }
+
+        /* ── Footer ──────────────────────── */
+        .demo-footer {
+            margin-top: 44px;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .demo-footer p {
+            font-size: 11px;
+            color: rgba(148,163,184,0.5);
+            line-height: 1.6;
+        }
+
+        /* ── Animations ──────────────────── */
+        @keyframes msgIn {
+            from { opacity: 0; transform: translateY(12px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; }
+            40% { transform: scale(1.2); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(217,119,6,0.3); }
+            50% { box-shadow: 0 0 40px rgba(217,119,6,0.5); }
+        }
+
+        /* ── Responsive ──────────────────── */
+        @media (max-width: 820px) {
+            .phones-container {
+                gap: 24px;
+            }
+            .phone-frame {
+                width: 320px;
+                height: 620px;
+                border-radius: 36px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .phones-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .phone-frame {
+                width: 340px;
+                height: 660px;
+            }
+            .start-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="site-logo">handled<i>.</i></a>
+            <div class="nav-links">
+                <div class="nav-dropdown" id="nav-industries">
+                    <button class="nav-dropdown-toggle" onclick="toggleDropdown('nav-industries')">
+                        Industries <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="lawncare.html">Lawn Care</a>
+                        <a href="roofing.html">Roofing</a>
+                        <a href="hvac.html">HVAC</a>
+                        <a href="plumbing.html">Plumbing</a>
+                        <a href="solar.html">Solar</a>
+                        <a href="pestcontrol.html">Pest Control</a>
+                        <a href="windowdoor.html">Window & Door</a>
+                        <a href="gutters.html">Gutters</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown" id="nav-demos">
+                    <button class="nav-dropdown-toggle" onclick="toggleDropdown('nav-demos')">
+                        Demos <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="demo-reviews.html" class="active">Review Generation</a>
+                    </div>
+                </div>
+                <a href="index.html#pricing" class="nav-btn">Get early access</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Demo Content -->
+    <div class="demo-page">
+        <!-- Header -->
+        <div class="demo-header">
+            <div class="logo-text">
+                <span>handled</span><span>.</span>
+            </div>
+            <h1>The Smart Review Workflow</h1>
+            <p>Watch Ava and Stella work together. Ava confirms the job with the owner. Stella reaches out to the customer, has a real conversation, writes their review for them, and handles negative feedback before it ever hits Google.</p>
+        </div>
+
+        <!-- Start Buttons -->
+        <div class="start-buttons" id="start-buttons">
+            <button class="start-btn start-btn-positive" onclick="handleStart('positive')">&#9654; Happy Customer Path</button>
+            <button class="start-btn start-btn-negative" onclick="handleStart('negative')">&#9654; Unhappy Customer Path</button>
+        </div>
+
+        <!-- Status Indicator -->
+        <div class="status-indicator" id="status-indicator">
+            <div class="status-dot" id="status-dot"></div>
+            <span class="status-text" id="status-text">Workflow running...</span>
+        </div>
+
+        <!-- Phones -->
+        <div class="phones-container">
+            <!-- Owner Phone -->
+            <div class="phone-col active" id="owner-phone-col">
+                <div class="phone-label">Owner's Phone</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"><div class="phone-notch-bar"></div></div>
+                    <div class="phone-header">
+                        <div class="phone-avatar">&#128241;</div>
+                        <div>
+                            <div class="phone-header-name">handled.</div>
+                            <div class="phone-header-sub">Your AI Team</div>
+                        </div>
+                    </div>
+                    <div class="messages-area" id="owner-msgs"></div>
+                    <div class="phone-input-bar"><div class="phone-input-fake">Message...</div></div>
+                </div>
+            </div>
+            <!-- Customer Phone -->
+            <div class="phone-col" id="customer-phone-col">
+                <div class="phone-label">Customer's Phone</div>
+                <div class="phone-frame">
+                    <div class="phone-notch"><div class="phone-notch-bar"></div></div>
+                    <div class="phone-header">
+                        <div class="phone-avatar">&#127968;</div>
+                        <div>
+                            <div class="phone-header-name">Thompson HVAC</div>
+                            <div class="phone-header-sub">(615) 555-2847</div>
+                        </div>
+                    </div>
+                    <div class="messages-area" id="customer-msgs"></div>
+                    <div class="phone-input-bar"><div class="phone-input-fake">Message...</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restart -->
+        <button class="restart-btn" id="restart-btn" onclick="handleRestart()">Try the Other Path</button>
+
+        <!-- Footer -->
+        <div class="demo-footer">
+            <p>No other review tool does this. Podium sends a link. Birdeye sends a link. Stella has a conversation, writes the review draft, and catches the bad ones before they ever reach Google.</p>
+        </div>
+    </div>
+
+    <script>
+        // ── Dropdown toggle ─────────────────
+        function toggleDropdown(id) {
+            var all = document.querySelectorAll('.nav-dropdown');
+            all.forEach(function(dd) {
+                if (dd.id !== id) dd.classList.remove('open');
+            });
+            document.getElementById(id).classList.toggle('open');
+        }
+
+        document.addEventListener('click', function(e) {
+            var dropdowns = document.querySelectorAll('.nav-dropdown');
+            dropdowns.forEach(function(dd) {
+                if (!dd.contains(e.target)) dd.classList.remove('open');
+            });
+        });
+
+        // ── Timelines ───────────────────────
+        var POSITIVE_TIMELINE = [
+            { phone:"owner", from:"ava", text:"Hey Kyle, just a heads up. The AC tune-up for Sarah Mitchell at 142 Oak St is done. How did everything go on your end?", delay:500, typing:1200 },
+            { phone:"owner", from:"owner", text:"Went great. System is running perfect now", delay:4000, typing:0 },
+            { phone:"owner", from:"ava", text:"Awesome! I\u2019ll let Stella know. She\u2019ll reach out to Sarah in a couple hours and see about getting you a review.", delay:5500, typing:1000 },
+            { phone:"customer", from:"system", text:"2 hours later...", delay:9000, typing:0 },
+            { phone:"customer", from:"stella", text:"Hey Sarah! This is Thompson HVAC. Thanks for letting us come out today for the AC tune-up. How did everything go?", delay:10500, typing:1500 },
+            { phone:"customer", from:"customer", text:"It was great actually! Your tech Mike was super friendly and explained everything he was doing. AC is already cooling way better", delay:14000, typing:0 },
+            { phone:"customer", from:"stella", text:"That\u2019s so great to hear! Mike is one of our best. Would you mind sharing that on Google? It really helps small businesses like ours.", delay:17000, typing:1200 },
+            { phone:"customer", from:"customer", text:"Sure, happy to! What do I even write though lol", delay:20000, typing:0 },
+            { phone:"customer", from:"stella", text:"I actually wrote one up based on what you just said. Feel free to use it as-is or change anything:", delay:22500, typing:1000 },
+            { phone:"customer", from:"stella", text:"\"Thompson HVAC was great. Tech Mike was super friendly, explained everything, and our AC is already cooling way better. Highly recommend!\"", delay:25000, typing:800, isReviewDraft:true },
+            { phone:"customer", from:"stella", text:"Just tap this link and paste it in: g.page/thompson-hvac/review", delay:27500, typing:600, isLink:true },
+            { phone:"customer", from:"customer", text:"Oh wow that\u2019s easy. Just posted it!", delay:30500, typing:0 },
+            { phone:"customer", from:"stella", text:"You\u2019re the best, Sarah! Thanks so much. We\u2019re always here if you need anything.", delay:33000, typing:800 },
+            { phone:"owner", from:"stella", text:"Good news! Sarah Mitchell just posted a 5-star review. She said Mike was \u201csuper friendly and explained everything.\u201d That\u2019s review #48. Handled.", delay:36000, typing:1000, isSuccess:true },
+            { phone:"customer", from:"system", text:"2 days later...", delay:40000, typing:0 },
+            { phone:"customer", from:"stella", text:"Hey Sarah! Thanks again for that awesome review. Quick question: know any neighbors or friends who might need HVAC work? If you share this link, they get priority scheduling and you get a thank-you from us: usehandled.ai/ref/sarah-m", delay:41500, typing:1200 },
+        ];
+
+        var NEGATIVE_TIMELINE = [
+            { phone:"owner", from:"ava", text:"Hey Kyle, just a heads up. The AC tune-up for Sarah Mitchell at 142 Oak St is done. How did everything go on your end?", delay:500, typing:1200 },
+            { phone:"owner", from:"owner", text:"Went great. System is running perfect now", delay:4000, typing:0 },
+            { phone:"owner", from:"ava", text:"Awesome! I\u2019ll let Stella know. She\u2019ll reach out to Sarah in a couple hours and see about getting you a review.", delay:5500, typing:1000 },
+            { phone:"customer", from:"system", text:"2 hours later...", delay:9000, typing:0 },
+            { phone:"customer", from:"stella", text:"Hey Sarah! This is Thompson HVAC. Thanks for letting us come out today for the AC tune-up. How did everything go?", delay:10500, typing:1500 },
+            { phone:"customer", from:"customer", text:"Honestly? Not great. The tech showed up 45 minutes late and tracked mud through my hallway. Didn\u2019t even clean it up.", delay:14000, typing:0 },
+            { phone:"customer", from:"stella", text:"I\u2019m really sorry to hear that, Sarah. That\u2019s absolutely not the experience we want for our customers. I\u2019m letting Kyle, the owner, know right now so he can make this right personally.", delay:17500, typing:1200 },
+            { phone:"customer", from:"customer", text:"I appreciate that. I just expected better.", delay:20500, typing:0 },
+            { phone:"customer", from:"stella", text:"You should expect better and Kyle will be reaching out to you shortly. Again, really sorry about this.", delay:23000, typing:1000 },
+            { phone:"owner", from:"stella", text:"HEADS UP: Sarah Mitchell was NOT happy. She said the tech was 45 min late and tracked mud through her hallway. I did NOT send a review link. You should call her ASAP. (615) 555-0847", delay:26000, typing:800, isAlert:true },
+            { phone:"owner", from:"ava", text:"I\u2019ve cleared your 4pm so you have time to call Sarah. Want me to send her a text letting her know you\u2019ll be calling?", delay:29500, typing:1000 },
+        ];
+
+        // ── State ───────────────────────────
+        var timeouts = [];
+        var currentScenario = null;
+        var isFinished = false;
+
+        function clearTimeouts() {
+            timeouts.forEach(function(t) { clearTimeout(t); });
+            timeouts = [];
+        }
+
+        function setActivePhone(phone) {
+            var ownerCol = document.getElementById('owner-phone-col');
+            var customerCol = document.getElementById('customer-phone-col');
+            if (phone === 'owner') {
+                ownerCol.classList.add('active');
+                customerCol.classList.remove('active');
+            } else {
+                customerCol.classList.add('active');
+                ownerCol.classList.remove('active');
+            }
+        }
+
+        function createBubble(msg) {
+            var isUser = msg.from === 'owner' || msg.from === 'customer';
+            var isSystem = msg.from === 'system';
+
+            if (isSystem) {
+                var div = document.createElement('div');
+                div.className = 'system-msg';
+                div.innerHTML = '<div class="line"></div><span>' + msg.text + '</span><div class="line"></div>';
+                return div;
+            }
+
+            var wrap = document.createElement('div');
+            wrap.className = 'bubble-wrap ' + (isUser ? 'from-user' : 'from-agent');
+
+            if (!isUser) {
+                var label = document.createElement('div');
+                label.className = 'bubble-agent-label ' + msg.from;
+                label.textContent = msg.from === 'stella' ? 'Stella' : 'Ava';
+                wrap.appendChild(label);
+            }
+
+            var bubble = document.createElement('div');
+            var classes = 'bubble ' + (isUser ? 'user' : 'agent');
+            if (msg.isAlert) classes += ' alert';
+            if (msg.isSuccess) classes += ' success';
+            if (msg.isReviewDraft) classes += ' review-draft';
+            if (msg.isLink) classes += ' link';
+            bubble.className = classes;
+            bubble.textContent = msg.text;
+            wrap.appendChild(bubble);
+
+            return wrap;
+        }
+
+        function createTypingIndicator(fromName) {
+            var div = document.createElement('div');
+            div.className = 'typing-indicator';
+            div.id = 'typing-' + fromName;
+            var labelEl = document.createElement('span');
+            labelEl.className = 'typing-label ' + fromName;
+            labelEl.textContent = fromName === 'stella' ? 'Stella' : 'Ava';
+            div.appendChild(labelEl);
+            var dots = document.createElement('div');
+            dots.className = 'typing-dots';
+            for (var i = 0; i < 3; i++) {
+                var dot = document.createElement('div');
+                dot.className = 'dot ' + fromName;
+                dots.appendChild(dot);
+            }
+            div.appendChild(dots);
+            return div;
+        }
+
+        function removeTyping(phone) {
+            var area = document.getElementById(phone + '-msgs');
+            var existing = area.querySelectorAll('.typing-indicator');
+            existing.forEach(function(el) { el.remove(); });
+        }
+
+        function addTyping(phone, fromName) {
+            var area = document.getElementById(phone + '-msgs');
+            removeTyping(phone);
+            area.appendChild(createTypingIndicator(fromName));
+            area.scrollTop = area.scrollHeight;
+        }
+
+        function addMessage(phone, msg) {
+            var area = document.getElementById(phone + '-msgs');
+            removeTyping(phone);
+            area.appendChild(createBubble(msg));
+            area.scrollTop = area.scrollHeight;
+        }
+
+        function runTimeline(timeline) {
+            clearTimeouts();
+            document.getElementById('owner-msgs').innerHTML = '';
+            document.getElementById('customer-msgs').innerHTML = '';
+            isFinished = false;
+
+            var maxDelay = 0;
+
+            timeline.forEach(function(msg) {
+                // Show typing indicator before agent messages
+                if (msg.typing > 0 && msg.from !== 'owner' && msg.from !== 'customer' && msg.from !== 'system') {
+                    var typStart = msg.delay - msg.typing;
+                    var t1 = setTimeout(function() {
+                        setActivePhone(msg.phone);
+                        addTyping(msg.phone, msg.from);
+                    }, Math.max(typStart, 0));
+                    timeouts.push(t1);
+                }
+
+                // Switch active phone for user/system messages
+                if (msg.from === 'owner' || msg.from === 'customer' || msg.from === 'system') {
+                    var t0 = setTimeout(function() {
+                        setActivePhone(msg.phone);
+                    }, msg.delay - 200);
+                    timeouts.push(t0);
+                }
+
+                // Show the message
+                var t2 = setTimeout(function() {
+                    setActivePhone(msg.phone);
+                    addMessage(msg.phone, msg);
+                }, msg.delay);
+                timeouts.push(t2);
+
+                if (msg.delay > maxDelay) maxDelay = msg.delay;
+            });
+
+            // Mark finished
+            var t3 = setTimeout(function() {
+                isFinished = true;
+                var dot = document.getElementById('status-dot');
+                var text = document.getElementById('status-text');
+                dot.classList.add('finished');
+                text.textContent = currentScenario === 'positive' ? 'Review posted + referral sent' : 'Negative review intercepted';
+                document.getElementById('restart-btn').classList.add('visible');
+            }, maxDelay + 3000);
+            timeouts.push(t3);
+        }
+
+        function handleStart(path) {
+            currentScenario = path;
+            document.getElementById('start-buttons').style.display = 'none';
+            var indicator = document.getElementById('status-indicator');
+            indicator.classList.add('visible');
+            document.getElementById('status-dot').classList.remove('finished');
+            document.getElementById('status-text').textContent = 'Workflow running...';
+            document.getElementById('restart-btn').classList.remove('visible');
+
+            runTimeline(path === 'positive' ? POSITIVE_TIMELINE : NEGATIVE_TIMELINE);
+        }
+
+        function handleRestart() {
+            clearTimeouts();
+            currentScenario = null;
+            isFinished = false;
+            document.getElementById('owner-msgs').innerHTML = '';
+            document.getElementById('customer-msgs').innerHTML = '';
+            document.getElementById('start-buttons').style.display = 'flex';
+            document.getElementById('status-indicator').classList.remove('visible');
+            document.getElementById('restart-btn').classList.remove('visible');
+            setActivePhone('owner');
+        }
+    </script>
+
+</body>
+</html>
