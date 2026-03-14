@@ -251,23 +251,308 @@
 
         /* ── Hero ────────────────────────────── */
         .hero {
-            padding: 160px 0 120px;
+            padding: 160px 0 100px;
             text-align: center;
+            background: radial-gradient(ellipse at 50% 0%, rgba(217,119,6,0.03) 0%, transparent 60%);
         }
 
         .hero h1 {
             font-size: 2.5rem;
             font-weight: 700;
-            max-width: 720px;
-            margin: 0 auto 24px;
+            max-width: 600px;
+            margin: 0 auto 16px;
+            line-height: 1.1;
+            letter-spacing: -1px;
         }
 
-        .hero p {
-            font-size: 1.1rem;
+        .hero p.hero-sub {
+            font-size: 1.05rem;
             color: var(--gray-light);
-            max-width: 560px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
+            max-width: 480px;
+            margin: 0 auto 48px;
+            line-height: 1.65;
+        }
+
+        /* ── Talk with Ava CTA ──────────────── */
+        .ava-cta-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .ava-pill {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 60px;
+            padding: 16px 36px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            max-width: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ava-pill:hover {
+            transform: scale(1.03);
+        }
+
+        .ava-pill.expanded {
+            gap: 12px;
+            padding: 12px 16px 12px 20px;
+            max-width: 480px;
+            width: 100%;
+            cursor: default;
+        }
+
+        .ava-pill.expanded:hover {
+            transform: none;
+        }
+
+        .ava-pill.error {
+            border-color: #ef4444;
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        .ava-mic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #10b981;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .ava-mic-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #10b981;
+        }
+
+        .ava-mic-pulse {
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            border: 2px solid #10b981;
+            opacity: 0;
+            animation: avaPulse 2s ease-out infinite;
+        }
+
+        @keyframes avaPulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        .ava-pill-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .ava-pill-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            border-bottom: 1.5px solid rgba(255,255,255,0.25);
+            color: white;
+            font-size: 16px;
+            font-family: 'DM Sans', sans-serif;
+            padding: 6px 0;
+            outline: none;
+            min-width: 0;
+            transition: border-color 0.3s;
+        }
+
+        .ava-pill-input:focus {
+            border-bottom-color: var(--amber);
+        }
+
+        .ava-pill-input.input-error {
+            border-bottom-color: #ef4444;
+        }
+
+        .ava-pill-input::placeholder {
+            color: rgba(148,163,184,0.5);
+        }
+
+        .ava-pill-submit {
+            background: var(--amber);
+            color: var(--navy);
+            border: none;
+            border-radius: 40px;
+            padding: 10px 24px;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s;
+            flex-shrink: 0;
+        }
+
+        .ava-pill-submit:hover {
+            transform: scale(1.05);
+        }
+
+        .ava-pill-submit:disabled {
+            background: rgba(217,119,6,0.5);
+            cursor: default;
+        }
+
+        .ava-pill-submit:disabled:hover {
+            transform: none;
+        }
+
+        .ava-helper {
+            font-size: 12px;
+            color: rgba(148,163,184,0.6);
+            text-align: center;
+        }
+
+        .ava-consent {
+            font-size: 10px;
+            color: rgba(148,163,184,0.35);
+            text-align: center;
+            max-width: 380px;
+            line-height: 1.5;
+        }
+
+        /* Calling state */
+        .ava-calling {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ava-calling-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 3px solid #10b981;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: ring 1.2s ease-in-out infinite;
+            margin-bottom: 8px;
+        }
+
+        @keyframes ring {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.15); opacity: 0.7; }
+        }
+
+        .ava-calling h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 0;
+        }
+
+        .ava-calling p {
+            font-size: 14px;
+            color: var(--gray-light);
+            margin: 0;
+        }
+
+        .ava-calling .ava-calling-note {
+            font-size: 13px;
+            color: rgba(148,163,184,0.5);
+            margin-top: 8px;
+        }
+
+        /* Secondary CTA */
+        .hero-secondary {
+            font-size: 14px;
+            color: var(--gray-light);
+            margin-bottom: 0;
+        }
+
+        .hero-secondary a {
+            color: white;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+
+        /* Trades bar */
+        .trades-bar {
+            margin-top: 64px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .trades-label {
+            font-size: 11px;
+            color: rgba(148,163,184,0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .trades-list {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .trades-list span {
+            font-size: 12px;
+            color: var(--gray-light);
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 100px;
+            border: 1px solid rgba(148,163,184,0.12);
+            background: rgba(148,163,184,0.04);
+        }
+
+        /* Hero stats */
+        .hero-stats {
+            margin-top: 48px;
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .hero-stat-label {
+            font-size: 12px;
+            color: var(--gray-light);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ── How It Works ────────────────────── */
@@ -956,8 +1241,8 @@
                 font-size: 3.5rem;
             }
 
-            .hero p {
-                font-size: 1.2rem;
+            .hero p.hero-sub {
+                font-size: 1.15rem;
             }
 
             .steps-grid {
@@ -1004,6 +1289,20 @@
                 font-size: 4rem;
             }
         }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                gap: 24px;
+            }
+
+            .ava-pill.expanded {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1047,9 +1346,67 @@
     <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <h1 class="fade-in">You show up to the job. We handle everything else.</h1>
-            <p class="fade-in">Your AI team answers calls, texts leads, books appointments, gets reviews, and reports results. Live in 90 seconds. $299/month.</p>
-            <a href="#pricing" class="btn fade-in">Start Your 7-Day Front Office Takeover</a>
+            <h1 class="fade-in">You show up to the job.<br>We handle everything else.</h1>
+            <p class="hero-sub fade-in">Your AI team answers calls, texts leads, books appointments, and gets you reviews. Live in 90 seconds.</p>
+
+            <!-- Talk with Ava CTA -->
+            <div class="ava-cta-wrap fade-in" id="ava-cta">
+                <div class="ava-pill" id="ava-pill" onclick="expandAvaPill()">
+                    <div class="ava-mic">
+                        <div class="ava-mic-dot"></div>
+                        <div class="ava-mic-pulse"></div>
+                    </div>
+                    <span class="ava-pill-label" id="ava-pill-label">TALK WITH AVA</span>
+                </div>
+                <p class="ava-helper" id="ava-helper">Enter your number. Ava will call you right away.</p>
+            </div>
+
+            <!-- Calling state (hidden by default) -->
+            <div class="ava-calling fade-in" id="ava-calling" style="display:none;">
+                <div class="ava-calling-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>Ava is calling you now.</h3>
+                <p>Pick up! She doesn't like to wait.</p>
+                <p class="ava-calling-note">After the call, Ava will text you to get started.</p>
+            </div>
+
+            <p class="hero-secondary fade-in">Or <a href="#pricing">start your 7-day front office takeover</a></p>
+
+            <!-- Trades bar -->
+            <div class="trades-bar fade-in">
+                <p class="trades-label">Built for every trade</p>
+                <div class="trades-list">
+                    <span>Plumbing</span>
+                    <span>HVAC</span>
+                    <span>Roofing</span>
+                    <span>Electrical</span>
+                    <span>Solar</span>
+                    <span>Painting</span>
+                    <span>Landscaping</span>
+                    <span>Pest Control</span>
+                </div>
+            </div>
+
+            <!-- Hero stats -->
+            <div class="hero-stats fade-in">
+                <div class="hero-stat">
+                    <p class="hero-stat-value">8 sec</p>
+                    <p class="hero-stat-label">avg response time</p>
+                </div>
+                <div class="hero-stat">
+                    <p class="hero-stat-value">$299</p>
+                    <p class="hero-stat-label">per month</p>
+                </div>
+                <div class="hero-stat">
+                    <p class="hero-stat-value">90 sec</p>
+                    <p class="hero-stat-label">to go live</p>
+                </div>
+                <div class="hero-stat">
+                    <p class="hero-stat-value">24/7</p>
+                    <p class="hero-stat-label">availability</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1308,6 +1665,99 @@
     </footer>
 
     <script>
+        // ── Talk with Ava widget ─────────────
+        var avaExpanded = false;
+        var avaSubmitted = false;
+
+        function formatPhone(value) {
+            var digits = value.replace(/\D/g, '').slice(0, 10);
+            if (digits.length >= 7) return '(' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6);
+            if (digits.length >= 4) return '(' + digits.slice(0, 3) + ') ' + digits.slice(3);
+            if (digits.length > 0) return '(' + digits;
+            return '';
+        }
+
+        function expandAvaPill() {
+            if (avaExpanded || avaSubmitted) return;
+            avaExpanded = true;
+            var pill = document.getElementById('ava-pill');
+            pill.classList.add('expanded');
+            pill.onclick = null;
+
+            // Replace label with input + button
+            document.getElementById('ava-pill-label').remove();
+            var input = document.createElement('input');
+            input.type = 'tel';
+            input.className = 'ava-pill-input';
+            input.id = 'ava-phone-input';
+            input.placeholder = '(555) 555-5555';
+            input.addEventListener('input', function() {
+                this.value = formatPhone(this.value);
+                pill.classList.remove('error');
+                input.classList.remove('input-error');
+            });
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') submitAvaPhone();
+            });
+
+            var btn = document.createElement('button');
+            btn.className = 'ava-pill-submit';
+            btn.id = 'ava-submit-btn';
+            btn.textContent = "Let's talk";
+            btn.onclick = function(e) { e.stopPropagation(); submitAvaPhone(); };
+
+            pill.appendChild(input);
+            pill.appendChild(btn);
+            input.focus();
+
+            document.getElementById('ava-helper').textContent = 'Ava will call you right away';
+
+            // Add consent text
+            var consent = document.createElement('p');
+            consent.className = 'ava-consent';
+            consent.textContent = 'By submitting, you consent to receive calls or texts from us, including AI-generated calls, about our services. Consent not required to purchase.';
+            document.getElementById('ava-cta').appendChild(consent);
+        }
+
+        function submitAvaPhone() {
+            if (avaSubmitted) return;
+            var input = document.getElementById('ava-phone-input');
+            var digits = input.value.replace(/\D/g, '');
+            if (digits.length < 10) {
+                var pill = document.getElementById('ava-pill');
+                pill.classList.add('error');
+                input.classList.add('input-error');
+                document.getElementById('ava-helper').textContent = 'Enter a valid 10-digit phone number';
+                setTimeout(function() {
+                    pill.classList.remove('error');
+                    input.classList.remove('input-error');
+                    document.getElementById('ava-helper').textContent = 'Ava will call you right away';
+                }, 2000);
+                return;
+            }
+
+            avaSubmitted = true;
+            var btn = document.getElementById('ava-submit-btn');
+            btn.textContent = 'Connecting...';
+            btn.disabled = true;
+
+            // POST to webhook
+            fetch('https://services.leadconnectorhq.com/hooks/9fPcgvYEwoWt8LWdzp9n/webhook-trigger/jNaqANKwoKahVhhhPfwe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    phone: digits,
+                    source: 'homepage_talk_with_ava',
+                    timestamp: new Date().toISOString()
+                })
+            }).catch(function() {});
+
+            setTimeout(function() {
+                document.getElementById('ava-cta').style.display = 'none';
+                document.getElementById('ava-calling').style.display = 'flex';
+            }, 1200);
+        }
+
         // Intersection Observer for fade-in animations
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
