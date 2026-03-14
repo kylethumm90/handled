@@ -153,6 +153,21 @@
             color: var(--green);
         }
 
+        .nav-link {
+            padding: 9px 16px;
+            color: var(--gray);
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--white);
+        }
+
         .nav-btn {
             display: inline-block;
             padding: 9px 20px;
@@ -816,6 +831,7 @@
         <div class="nav-inner">
             <a href="#" class="site-logo">handled<i>.</i></a>
             <div class="nav-links">
+                <a href="why.html" class="nav-link">Why handled.</a>
                 <div class="nav-dropdown" id="nav-industries">
                     <button class="nav-dropdown-toggle" onclick="toggleDropdown('nav-industries')">
                         Industries <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>

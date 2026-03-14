@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>handled. | Why handled.</title>
+    <meta name="description" content="You didn't start a business to sit in your truck returning voicemails at 9pm. Meet your AI front office team.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0b1120;
+            --bg-card: #111827;
+            --bg-surface: #1a2332;
+            --bg-muted: #0d0f14;
+            --amber: #f59e0b;
+            --amber-hover: #d97706;
+            --amber-dim: rgba(245, 158, 11, 0.10);
+            --amber-glow: rgba(245, 158, 11, 0.06);
+            --white: #ffffff;
+            --gray: #9ca3af;
+            --gray-light: #d1d5db;
+            --gray-border: rgba(255, 255, 255, 0.07);
+            --red-muted: #6b7280;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .container-wide {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── Nav ─────────────────────────── */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(11, 17, 32, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-border);
+        }
+
+        .nav-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .site-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .site-logo i {
+            color: var(--amber);
+            font-style: normal;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link {
+            padding: 9px 16px;
+            color: var(--amber);
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: color 0.2s;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 9px 16px;
+            background: transparent;
+            color: var(--gray);
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-dropdown-toggle:hover {
+            color: var(--white);
+        }
+
+        .nav-dropdown-toggle svg {
+            transition: transform 0.2s;
+        }
+
+        .nav-dropdown.open .nav-dropdown-toggle svg {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            min-width: 200px;
+            background: #1a2332;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 6px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-dropdown.open .nav-dropdown-menu {
+            display: block;
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 10px 14px;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--white);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 9px 20px;
+            background: var(--amber);
+            color: #000;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: var(--amber-hover);
+        }
+
+        /* ── Shared ──────────────────────── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Section 1: The Problem ────── */
+        .s-problem {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 160px 0 120px;
+            text-align: center;
+            background: radial-gradient(ellipse at 50% 30%, rgba(245, 158, 11, 0.04) 0%, transparent 60%);
+        }
+
+        .s-problem h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.12;
+            max-width: 700px;
+            margin: 0 auto 32px;
+        }
+
+        .s-problem .body-text {
+            font-size: 1.1rem;
+            color: var(--gray-light);
+            line-height: 1.75;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        .s-problem .body-text strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* ── Section 2: Bad Answers ──── */
+        .s-bad-answers {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0;
+            background: var(--bg-muted);
+            border-top: 1px solid var(--gray-border);
+            border-bottom: 1px solid var(--gray-border);
+        }
+
+        .s-bad-answers .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--red-muted);
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .s-bad-answers h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            text-align: center;
+            margin-bottom: 56px;
+            color: var(--gray);
+        }
+
+        .bad-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .bad-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 32px 28px;
+        }
+
+        .bad-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray);
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .bad-card h3::before {
+            content: "\2715  ";
+            color: #ef4444;
+            font-size: 0.9rem;
+        }
+
+        .bad-card p {
+            color: #6b7280;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        /* ── Section 3: Meet the Team ──── */
+        .s-team {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0;
+            background: radial-gradient(ellipse at 50% 20%, rgba(245, 158, 11, 0.06) 0%, transparent 55%);
+        }
+
+        .s-team .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .s-team h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            text-align: center;
+            margin-bottom: 56px;
+            line-height: 1.15;
+        }
+
+        .team-member {
+            max-width: 640px;
+            margin: 0 auto 48px;
+        }
+
+        .team-member:last-child {
+            margin-bottom: 0;
+        }
+
+        .team-name {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 16px;
+        }
+
+        .team-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--amber);
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .team-member blockquote {
+            font-size: 1.08rem;
+            color: var(--gray-light);
+            line-height: 1.8;
+            border-left: 2px solid rgba(245, 158, 11, 0.25);
+            padding-left: 24px;
+            margin: 0;
+        }
+
+        /* ── Section 4: What Makes Us Different ── */
+        .s-different {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0;
+            border-top: 1px solid var(--gray-border);
+        }
+
+        .s-different .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .s-different h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            text-align: center;
+            margin-bottom: 56px;
+            line-height: 1.15;
+        }
+
+        .diff-list {
+            max-width: 640px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+
+        .diff-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .diff-other {
+            font-size: 0.95rem;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .diff-us {
+            font-size: 1.05rem;
+            color: var(--white);
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .diff-us strong {
+            color: var(--amber);
+            font-weight: 600;
+        }
+
+        /* ── Section 5: The Numbers ──── */
+        .s-numbers {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0;
+            background: var(--bg-muted);
+            border-top: 1px solid var(--gray-border);
+            border-bottom: 1px solid var(--gray-border);
+        }
+
+        .s-numbers .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .s-numbers h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            text-align: center;
+            margin-bottom: 56px;
+            line-height: 1.15;
+        }
+
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .number-card {
+            text-align: center;
+            padding: 32px 24px;
+            background: rgba(245, 158, 11, 0.03);
+            border: 1px solid rgba(245, 158, 11, 0.08);
+            border-radius: 14px;
+        }
+
+        .number-value {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--amber);
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+
+        .number-stat {
+            font-size: 0.95rem;
+            color: var(--gray-light);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .number-proof {
+            font-size: 0.85rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        /* ── Section 6: Who It's For ──── */
+        .s-who {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .s-who h2 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            line-height: 1.65;
+            max-width: 620px;
+            margin: 0 auto;
+            color: var(--gray-light);
+        }
+
+        .s-who h2 strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .s-who h2 em {
+            color: var(--amber);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* ── Section 7: Guarantee ──── */
+        .s-guarantee {
+            padding: 100px 0;
+            text-align: center;
+            border-top: 1px solid var(--gray-border);
+        }
+
+        .guarantee-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+            border-radius: 16px;
+            padding: 48px 36px;
+        }
+
+        .guarantee-box .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 14px;
+        }
+
+        .guarantee-box h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            line-height: 1.25;
+        }
+
+        .guarantee-box p {
+            font-size: 1rem;
+            color: var(--gray-light);
+            line-height: 1.75;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* ── Section 8: CTA ──────────── */
+        .s-cta {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 120px;
+            text-align: center;
+            background: radial-gradient(ellipse at 50% 80%, rgba(245, 158, 11, 0.06) 0%, transparent 55%);
+        }
+
+        .s-cta h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            max-width: 580px;
+            margin: 0 auto 12px;
+        }
+
+        .s-cta .cta-sub {
+            font-size: 1.05rem;
+            color: var(--gray);
+            margin-bottom: 36px;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--amber);
+            color: #000;
+            font-family: inherit;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-cta:hover {
+            background: var(--amber-hover);
+            transform: translateY(-2px);
+        }
+
+        /* ── Footer ──────────────────────── */
+        .site-footer {
+            border-top: 1px solid var(--gray-border);
+            padding: 36px 0;
+        }
+
+        .footer-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .footer-copy {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* ── Responsive ──────────────────── */
+        @media (min-width: 640px) {
+            .numbers-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .s-problem h1 {
+                font-size: 3.6rem;
+            }
+
+            .bad-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .s-bad-answers h2,
+            .s-team h2,
+            .s-different h2,
+            .s-numbers h2 {
+                font-size: 2.5rem;
+            }
+
+            .s-who h2 {
+                font-size: 1.8rem;
+            }
+
+            .s-cta h2 {
+                font-size: 2.8rem;
+            }
+
+            .footer-inner {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .s-problem h1 {
+                font-size: 2rem;
+            }
+
+            .s-problem {
+                padding: 140px 0 80px;
+            }
+
+            .number-value {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="site-logo">handled<i>.</i></a>
+            <div class="nav-links">
+                <a href="why.html" class="nav-link">Why handled.</a>
+                <div class="nav-dropdown" id="nav-industries">
+                    <button class="nav-dropdown-toggle" onclick="toggleDropdown('nav-industries')">
+                        Industries <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="lawncare.html">Lawn Care</a>
+                        <a href="roofing.html">Roofing</a>
+                        <a href="hvac.html">HVAC</a>
+                        <a href="plumbing.html">Plumbing</a>
+                        <a href="solar.html">Solar</a>
+                        <a href="pestcontrol.html">Pest Control</a>
+                        <a href="windowdoor.html">Window & Door</a>
+                        <a href="gutters.html">Gutters</a>
+                        <a href="fencing.html">Fencing</a>
+                        <a href="bathroomremodel.html">Bathroom Remodel</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown" id="nav-demos">
+                    <button class="nav-dropdown-toggle" onclick="toggleDropdown('nav-demos')">
+                        Demos <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="demo-reviews.html">Review Generation</a>
+                    </div>
+                </div>
+                <a href="#cta" class="nav-btn">Start free trial</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section 1: The Problem -->
+    <section class="s-problem">
+        <div class="container">
+            <h1 class="fade-in">You didn't start a business to sit in your truck returning voicemails at 9pm.</h1>
+            <p class="body-text fade-in">You started it because you're great at what you do. But somewhere along the way, "running a business" turned into chasing leads, begging for reviews, and feeling guilty about the calls you missed while you were on a roof. <strong>You're not bad at business. You're just doing three jobs at once.</strong></p>
+        </div>
+    </section>
+
+    <!-- Section 2: What Most People Tell You -->
+    <section class="s-bad-answers">
+        <div class="container-wide">
+            <p class="section-label fade-in">What most people tell you</p>
+            <h2 class="fade-in">The "solutions" that don't actually solve anything.</h2>
+            <div class="bad-grid">
+                <div class="bad-card fade-in">
+                    <h3>"Hire a receptionist"</h3>
+                    <p>$3,000/month, calls in sick, quits in 6 months, still can't follow up at midnight.</p>
+                </div>
+                <div class="bad-card fade-in">
+                    <h3>"Buy more software"</h3>
+                    <p>Another dashboard you'll never log into. Another app your guys won't use. Another $200/month for something that sends one text.</p>
+                </div>
+                <div class="bad-card fade-in">
+                    <h3>"Just work harder"</h3>
+                    <p>You already wake up at 6 and answer emails at 10pm. There's no more "harder" left.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Meet the Team -->
+    <section class="s-team">
+        <div class="container">
+            <p class="section-label fade-in">Your AI Front Office Team</p>
+            <h2 class="fade-in">What if you had a team that actually handled it?</h2>
+
+            <div class="team-member fade-in">
+                <div class="team-name"><span class="team-dot"></span> Ava &mdash; Lead Manager</div>
+                <blockquote>Ava answers every call. Texts every lead back in 8 seconds. Follows up 5 times. Books the appointment. Sends you a text when it's done. She doesn't take days off. She doesn't forget.</blockquote>
+            </div>
+
+            <div class="team-member fade-in">
+                <div class="team-name"><span class="team-dot"></span> Stella &mdash; Reputation & Referrals</div>
+                <blockquote>Stella asks every customer how the job went. If they're happy, she writes their Google review for them and sends the link. If they're not, she alerts you before it ever hits Google. Then she asks for referrals. Then she follows up with past customers you forgot about.</blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: What Makes Handled Different -->
+    <section class="s-different">
+        <div class="container">
+            <p class="section-label fade-in">The Difference</p>
+            <h2 class="fade-in">Don't compare features. Compare experiences.</h2>
+
+            <div class="diff-list">
+                <div class="diff-item fade-in">
+                    <p class="diff-other">Other tools give you a dashboard.</p>
+                    <p class="diff-us"><strong>handled.</strong> gives you a text.</p>
+                </div>
+                <div class="diff-item fade-in">
+                    <p class="diff-other">Other tools answer the phone.</p>
+                    <p class="diff-us"><strong>handled.</strong> answers, qualifies, follows up, books, confirms, reminds, reviews, refers, reactivates, and reports.</p>
+                </div>
+                <div class="diff-item fade-in">
+                    <p class="diff-other">Other tools need you to learn software.</p>
+                    <p class="diff-us"><strong>handled.</strong> needs you to check your phone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: The Numbers -->
+    <section class="s-numbers">
+        <div class="container-wide">
+            <p class="section-label fade-in">The Numbers</p>
+            <h2 class="fade-in">The math is simple.</h2>
+
+            <div class="numbers-grid">
+                <div class="number-card fade-in">
+                    <div class="number-value">78%</div>
+                    <p class="number-stat">of customers buy from the first company to respond.</p>
+                    <p class="number-proof">Ava responds in 8 seconds.</p>
+                </div>
+                <div class="number-card fade-in">
+                    <div class="number-value">4x</div>
+                    <p class="number-stat">more reviews for contractors who ask vs. those who don't.</p>
+                    <p class="number-proof">Stella asks every single time.</p>
+                </div>
+                <div class="number-card fade-in">
+                    <div class="number-value">3x</div>
+                    <p class="number-stat">higher close rate on referred leads vs. cold leads.</p>
+                    <p class="number-proof">Stella generates referrals automatically.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Who It's For -->
+    <section class="s-who">
+        <div class="container">
+            <h2 class="fade-in">If you're a <strong>plumber</strong>, <strong>HVAC tech</strong>, <strong>roofer</strong>, <strong>electrician</strong>, <strong>solar installer</strong>, <strong>painter</strong>, <strong>landscaper</strong>, <strong>pest control pro</strong>, or any <strong>home service contractor</strong> who's tired of doing three jobs at once &mdash; <em>handled. was built for you.</em></h2>
+        </div>
+    </section>
+
+    <!-- Section 7: The Guarantee -->
+    <section class="s-guarantee">
+        <div class="container">
+            <div class="guarantee-box fade-in">
+                <p class="section-label">The Guarantee</p>
+                <h2>Zero risk. Full confidence.</h2>
+                <p>Try your AI team free for 7 days. If they don't book an appointment, get you a review, or show you something you're missing &mdash; we extend it free. After that, $299/month. Cancel anytime. No contracts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: CTA -->
+    <section class="s-cta" id="cta">
+        <div class="container">
+            <h2 class="fade-in">You show up to the job.<br>We handle everything&nbsp;else.</h2>
+            <p class="cta-sub fade-in">Your AI front office is ready.</p>
+            <div class="fade-in">
+                <a href="#cta" class="btn-cta">Start Your 7-Day Front Office Takeover</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span class="site-logo">handled<i>.</i></span>
+            <span class="footer-copy">&copy; 2026 handled. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script>
+        // ── Scroll fade-in ──────────────────
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            observer.observe(el);
+        });
+
+        // ── Nav dropdown ─────────────────────
+        function toggleDropdown(id) {
+            var all = document.querySelectorAll('.nav-dropdown');
+            all.forEach(function(dd) {
+                if (dd.id !== id) dd.classList.remove('open');
+            });
+            document.getElementById(id).classList.toggle('open');
+        }
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.nav-dropdown')) {
+                document.querySelectorAll('.nav-dropdown').forEach(function(dd) { dd.classList.remove('open'); });
+            }
+        });
+    </script>
+
+</body>
+</html>
