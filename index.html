@@ -1455,6 +1455,7 @@
         }
 
         .phone-body {
+            flex: 1;
             padding: 0 10px;
             display: flex;
             flex-direction: column;
@@ -1537,6 +1538,7 @@
         .phone-metric-delta.amber { color: #fbbf24; }
 
         .phone-agents {
+            flex: 1;
             background: #1a1a1a;
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.05);
@@ -1696,7 +1698,7 @@
                             <div class="phone-dynamic-island"></div>
 
                             <!-- Scaled body content wrapper -->
-                            <div style="transform: scale(0.78); transform-origin: top center; width: 128%; margin-left: -14%;">
+                            <div style="transform: scale(0.78); transform-origin: top center; width: 128%; margin-left: -14%; flex: 1; display: flex; flex-direction: column;">
                                 <!-- Wordmark -->
                                 <div class="phone-wordmark"><span>handled.</span></div>
 
@@ -1760,9 +1762,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Spacer -->
-                            <div style="flex:1"></div>
 
                             <!-- Bottom nav -->
                             <div class="phone-bottom-nav">
