@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>handled. | ROI Calculator — How Much Are Missed Calls Costing You?</title>
+    <meta name="description" content="See exactly how much revenue you're losing to missed calls and what Ava from handled. can recover. Free ROI calculator for home service contractors.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0f172a;
+            --amber: #d97706;
+            --amber-hover: #b45309;
+            --white: #ffffff;
+            --gray-light: #94a3b8;
+            --gray-dark: #1e293b;
+            --card-bg: #1e293b;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ── Nav ─────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--amber);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link {
+            padding: 9px 16px;
+            color: var(--gray-light);
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--white);
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 9px 16px;
+            background: transparent;
+            color: var(--gray-light);
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-dropdown-toggle:hover {
+            color: var(--white);
+        }
+
+        .nav-dropdown-toggle svg {
+            transition: transform 0.2s;
+        }
+
+        .nav-dropdown.open .nav-dropdown-toggle svg {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            min-width: 200px;
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 6px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-dropdown.open .nav-dropdown-menu {
+            display: block;
+        }
+
+        .nav-dropdown-menu a {
+            display: block;
+            padding: 10px 14px;
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--white);
+        }
+
+        .nav-dropdown-menu a.active {
+            color: var(--amber);
+        }
+
+        .nav-cta {
+            display: inline-block;
+            padding: 10px 22px;
+            background: var(--amber);
+            color: var(--navy);
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--amber-hover);
+        }
+
+        /* ── Calculator ─────────────────────── */
+        .calc-header {
+            padding: 120px 20px 0;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .calc-header .brand-label {
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: var(--amber);
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .calc-header h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1d1d1f;
+            margin: 0 0 8px;
+            line-height: 1.15;
+        }
+
+        .calc-header h1 .accent {
+            color: var(--amber);
+        }
+
+        .calc-header p {
+            color: #86868b;
+            font-size: 15px;
+            margin: 0 0 32px;
+            line-height: 1.5;
+        }
+
+        .calc-layout {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .calc-left {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .calc-right {
+            flex: 1;
+            min-width: 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 28px 28px 20px;
+            border: 1px solid #e5e5ea;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 24px;
+        }
+
+        /* Slider inputs */
+        .slider-group {
+            margin-bottom: 28px;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+
+        .slider-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        .slider-value {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--amber);
+        }
+
+        .slider-desc {
+            font-size: 11.5px;
+            color: #86868b;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .slider-group input[type="range"] {
+            width: 100%;
+            accent-color: var(--amber);
+            height: 6px;
+            cursor: pointer;
+        }
+
+        .slider-range {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #aeaeb2;
+            margin-top: 3px;
+        }
+
+        /* Stat cards */
+        .stat-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .stat-row + .stat-row {
+            margin-top: 12px;
+        }
+
+        .stat-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 18px 20px;
+            border: 1px solid #e5e5ea;
+            flex: 1;
+            min-width: 160px;
+        }
+
+        .stat-card-label {
+            font-size: 11px;
+            color: #86868b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .stat-card-value {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1d1d1f;
+            line-height: 1.1;
+        }
+
+        .stat-card-value.red { color: #ff3b30; }
+        .stat-card-value.green { color: #34c759; }
+
+        .stat-card-sub {
+            font-size: 11px;
+            color: #86868b;
+            margin-top: 4px;
+        }
+
+        /* Section labels */
+        .section-label-red {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ff3b30;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-label-green {
+            font-size: 13px;
+            font-weight: 700;
+            color: #34c759;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-label-amber {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--amber);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        /* Warning box */
+        .warning-box {
+            background: #fff5f5;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-top: 12px;
+            border: 1px solid #ffdbdb;
+            font-size: 12px;
+            color: #ff3b30;
+        }
+
+        /* Bottom line dark card */
+        .bottom-line {
+            background: linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%);
+            border-radius: 18px;
+            padding: 28px 24px;
+            color: #fff;
+        }
+
+        .bottom-line-grid {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .bottom-line-item {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .bottom-line-label {
+            font-size: 11px;
+            color: rgba(255,255,255,0.5);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .bottom-line-value {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .bottom-line-value .unit {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .bottom-line-value.amber { color: var(--amber); }
+        .bottom-line-value.green { color: #34c759; }
+
+        .bottom-line-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 16px 0;
+        }
+
+        .bottom-line-note {
+            margin-top: 16px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.5;
+        }
+
+        /* Comparison card */
+        .compare-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .compare-card {
+            flex: 1;
+            border-radius: 12px;
+            padding: 14px 16px;
+        }
+
+        .compare-card.receptionist {
+            background: #f5f5f7;
+        }
+
+        .compare-card.ava {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+
+        .compare-card-label {
+            font-size: 10px;
+            color: #86868b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .compare-card-price {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .compare-card-price.red { color: #ff3b30; }
+        .compare-card-price.green { color: #34c759; }
+
+        .compare-card-price .unit {
+            font-size: 11px;
+            font-weight: 500;
+            color: #86868b;
+        }
+
+        .compare-card-detail {
+            font-size: 11px;
+            color: #86868b;
+            margin-top: 2px;
+        }
+
+        .compare-savings {
+            background: #f5f5f7;
+            border-radius: 10px;
+            padding: 10px 14px;
+            text-align: center;
+        }
+
+        .compare-savings strong {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1d1d1f;
+        }
+
+        .compare-savings span {
+            font-size: 12px;
+            color: #86868b;
+        }
+
+        /* CTA at bottom of calculator */
+        .calc-cta {
+            text-align: center;
+            padding: 8px 0 0;
+        }
+
+        .calc-cta p {
+            font-size: 12px;
+            color: #86868b;
+            margin-bottom: 12px;
+        }
+
+        .calc-cta .disclaimer {
+            font-size: 11px;
+            color: #aeaeb2;
+        }
+
+        /* ── Who Is This For ────────────────── */
+        .who-section {
+            padding: 80px 20px;
+            background: #fff;
+        }
+
+        .who-inner {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .who-section h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1d1d1f;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .who-section .who-sub {
+            font-size: 15px;
+            color: #86868b;
+            text-align: center;
+            max-width: 520px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .who-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .who-card {
+            background: #f5f5f7;
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #e5e5ea;
+        }
+
+        .who-card-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .who-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 6px;
+        }
+
+        .who-card p {
+            font-size: 13px;
+            color: #86868b;
+            line-height: 1.5;
+        }
+
+        /* ── FAQ ────────────────────────────── */
+        .faq-section {
+            padding: 80px 20px;
+            background: #f5f5f7;
+        }
+
+        .faq-inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq-section h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1d1d1f;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid #e5e5ea;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 22px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1d1d1f;
+            text-align: left;
+        }
+
+        .faq-question:hover {
+            background: #fafafa;
+        }
+
+        .faq-question svg {
+            flex-shrink: 0;
+            transition: transform 0.2s;
+            color: #86868b;
+        }
+
+        .faq-item.open .faq-question svg {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 0 22px 18px;
+            font-size: 14px;
+            color: #6e6e73;
+            line-height: 1.6;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        /* ── Footer ─────────────────────────── */
+        .calc-footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #f5f5f7;
+        }
+
+        .calc-footer p {
+            color: #aeaeb2;
+            font-size: 12px;
+        }
+
+        .calc-footer span {
+            color: var(--amber);
+            font-weight: 600;
+        }
+
+        /* ── Responsive ─────────────────────── */
+        @media (max-width: 700px) {
+            .calc-header h1 {
+                font-size: 26px;
+            }
+
+            .compare-row {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Nav -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="logo">handled<span>.</span></a>
+            <div class="nav-links">
+                <a href="why.html" class="nav-link">Why handled.</a>
+                <div class="nav-dropdown" id="nav-industries">
+                    <button class="nav-dropdown-toggle" onclick="toggleDropdown('nav-industries')">
+                        Industries <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="lawncare.html">Lawn Care</a>
+                        <a href="roofing.html">Roofing</a>
+                        <a href="hvac.html">HVAC</a>
+                        <a href="plumbing.html">Plumbing</a>
+                        <a href="solar.html">Solar</a>
+                        <a href="pestcontrol.html">Pest Control</a>
+                        <a href="windowdoor.html">Window &amp; Door</a>
+                        <a href="gutters.html">Gutters</a>
+                        <a href="fencing.html">Fencing</a>
+                        <a href="bathroomremodel.html">Bathroom Remodel</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown" id="nav-demos">
+                    <button class="nav-dropdown-toggle" onclick="toggleDropdown('nav-demos')">
+                        Demos <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="demo-reviews.html">Review Generation</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown" id="nav-resources">
+                    <button class="nav-dropdown-toggle" onclick="toggleDropdown('nav-resources')">
+                        Resources <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l4 4 4-4"/></svg>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="roi-calculator.html" class="active">ROI Calculator</a>
+                    </div>
+                </div>
+                <a href="index.html#pricing" class="nav-cta">Start Free Trial</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="calc-header">
+        <div class="brand-label">handled.</div>
+        <h1>How Much Are Missed Calls<br>Costing You<span class="accent">?</span></h1>
+        <p>Adjust the sliders to match your business. See exactly what you're losing and what Ava could recover.</p>
+    </div>
+
+    <!-- Calculator -->
+    <div class="calc-layout">
+        <!-- Left: Inputs -->
+        <div class="calc-left">
+            <div class="card">
+                <div class="card-title">Your Business</div>
+
+                <div class="slider-group">
+                    <div class="slider-header">
+                        <label class="slider-label">Missed calls per week</label>
+                        <div class="slider-value"><span id="v-missed">8</span> calls</div>
+                    </div>
+                    <div class="slider-desc">How many calls go to voicemail or get missed while you're on a job?</div>
+                    <input type="range" min="1" max="40" value="8" id="s-missed" oninput="update()">
+                    <div class="slider-range"><span>1 calls</span><span>40 calls</span></div>
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-header">
+                        <label class="slider-label">Average job value</label>
+                        <div class="slider-value">$<span id="v-job">3,500</span></div>
+                    </div>
+                    <div class="slider-desc">What's a typical completed job worth to your business?</div>
+                    <input type="range" min="100" max="15000" step="100" value="3500" id="s-job" oninput="update()">
+                    <div class="slider-range"><span>$100</span><span>$15,000</span></div>
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-header">
+                        <label class="slider-label">Close rate on answered calls</label>
+                        <div class="slider-value"><span id="v-close">35</span>%</div>
+                    </div>
+                    <div class="slider-desc">What percentage of people who actually talk to you end up booking?</div>
+                    <input type="range" min="10" max="80" value="35" id="s-close" oninput="update()">
+                    <div class="slider-range"><span>10%</span><span>80%</span></div>
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-header">
+                        <label class="slider-label">Current average response time</label>
+                        <div class="slider-value"><span id="v-response">120</span> min</div>
+                    </div>
+                    <div class="slider-desc">How long does it typically take you to call back a missed lead?</div>
+                    <input type="range" min="5" max="480" step="5" value="120" id="s-response" oninput="update()">
+                    <div class="slider-range"><span>5 min</span><span>480 min</span></div>
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-header">
+                        <label class="slider-label">Monthly ad spend</label>
+                        <div class="slider-value">$<span id="v-adspend">2,000</span></div>
+                    </div>
+                    <div class="slider-desc">Google Ads, Angi, Thumbtack, Facebook, etc.</div>
+                    <input type="range" min="0" max="10000" step="100" value="2000" id="s-adspend" oninput="update()">
+                    <div class="slider-range"><span>$0</span><span>$10,000</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Results -->
+        <div class="calc-right">
+            <!-- The Cost of Doing Nothing -->
+            <div class="card">
+                <div class="section-label-red">The Cost of Doing Nothing</div>
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <div class="stat-card-label">Missed calls/month</div>
+                        <div class="stat-card-value" id="r-missed-month">34</div>
+                        <div class="stat-card-sub">Calls going to voicemail</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-label">Jobs lost/month</div>
+                        <div class="stat-card-value red" id="r-jobs-lost">12</div>
+                        <div class="stat-card-sub" id="r-jobs-lost-sub">At your 35% close rate</div>
+                    </div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <div class="stat-card-label">Revenue lost/month</div>
+                        <div class="stat-card-value red" id="r-rev-lost-month">$42,000</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-label">Revenue lost/year</div>
+                        <div class="stat-card-value red" id="r-rev-lost-year">$504,000</div>
+                    </div>
+                </div>
+                <div class="warning-box" id="r-adwaste-box">
+                    ~<span id="r-adwaste">$540</span>/month of your ad spend goes to leads you never respond to.
+                </div>
+            </div>
+
+            <!-- What Ava Recovers -->
+            <div class="card">
+                <div class="section-label-green">What Ava Recovers</div>
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <div class="stat-card-label">Response time</div>
+                        <div class="stat-card-value green">8 sec</div>
+                        <div class="stat-card-sub" id="r-response-sub">99% faster than your current 120 min</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-label">Jobs recovered/month</div>
+                        <div class="stat-card-value green" id="r-jobs-recovered">8.4</div>
+                        <div class="stat-card-sub">Ava catches what you miss</div>
+                    </div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <div class="stat-card-label">Revenue recovered/month</div>
+                        <div class="stat-card-value green" id="r-rev-recovered-month">$29,400</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-label">Revenue recovered/year</div>
+                        <div class="stat-card-value green" id="r-rev-recovered-year">$352,800</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Bottom Line -->
+            <div class="bottom-line">
+                <div class="section-label-amber">The Bottom Line</div>
+                <div class="bottom-line-grid">
+                    <div class="bottom-line-item">
+                        <div class="bottom-line-label">Handled costs</div>
+                        <div class="bottom-line-value">$299<span class="unit">/mo</span></div>
+                    </div>
+                    <div class="bottom-line-item">
+                        <div class="bottom-line-label">ROI multiple</div>
+                        <div class="bottom-line-value amber" id="r-roi-multiple">98x</div>
+                    </div>
+                </div>
+                <div class="bottom-line-divider"></div>
+                <div class="bottom-line-grid">
+                    <div class="bottom-line-item">
+                        <div class="bottom-line-label">Net gain/month</div>
+                        <div class="bottom-line-value green" id="r-net-month">$29,101</div>
+                    </div>
+                    <div class="bottom-line-item">
+                        <div class="bottom-line-label">Net gain/year</div>
+                        <div class="bottom-line-value green" id="r-net-year">$349,212</div>
+                    </div>
+                </div>
+                <div class="bottom-line-note" id="r-bottom-note">
+                    For every $1 you spend on Handled, you get $98 back in recovered revenue. That's 98x ROI.
+                </div>
+            </div>
+
+            <!-- Comparison -->
+            <div class="card">
+                <div class="card-title">Hiring a Receptionist vs. Handled</div>
+                <div class="compare-row">
+                    <div class="compare-card receptionist">
+                        <div class="compare-card-label">Receptionist</div>
+                        <div class="compare-card-price red">$3,200<span class="unit">/mo</span></div>
+                        <div class="compare-card-detail">Salary + taxes + benefits</div>
+                        <div class="compare-card-detail">Works 40 hrs/week</div>
+                        <div class="compare-card-detail">Takes vacations, calls in sick</div>
+                    </div>
+                    <div class="compare-card ava">
+                        <div class="compare-card-label">Ava from Handled</div>
+                        <div class="compare-card-price green">$299<span class="unit">/mo</span></div>
+                        <div class="compare-card-detail">Flat rate, no surprises</div>
+                        <div class="compare-card-detail">Works 24/7/365</div>
+                        <div class="compare-card-detail">Never sick, never quits</div>
+                    </div>
+                </div>
+                <div class="compare-savings">
+                    <strong>Save $34,812/year</strong> <span>with better coverage</span>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="calc-cta">
+                <p>Your missed calls cost you <span id="r-cta-cost">$42,000</span>/month. Ava costs $299.</p>
+                <div class="disclaimer">Calculations based on your inputs and industry averages. Actual results may vary.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Who Is This ROI Calculator For? -->
+    <section class="who-section">
+        <div class="who-inner">
+            <h2>Who Is This ROI Calculator For?</h2>
+            <p class="who-sub">If any of these sound like you, this calculator was built with your business in mind.</p>
+            <div class="who-grid">
+                <div class="who-card">
+                    <div class="who-card-icon">🔧</div>
+                    <h3>Solo Contractors</h3>
+                    <p>You're on the job site all day and can't answer every call. By the time you call back, the lead already booked someone else.</p>
+                </div>
+                <div class="who-card">
+                    <div class="who-card-icon">🏠</div>
+                    <h3>Small Home Service Teams</h3>
+                    <p>You have a crew but no dedicated office person. Calls go to voicemail during peak hours and on weekends.</p>
+                </div>
+                <div class="who-card">
+                    <div class="who-card-icon">📈</div>
+                    <h3>Growing Companies</h3>
+                    <p>You're spending on ads but not sure how many leads you're actually converting. You need visibility into what's working.</p>
+                </div>
+                <div class="who-card">
+                    <div class="who-card-icon">💰</div>
+                    <h3>Owners Watching Their Budget</h3>
+                    <p>Hiring a full-time receptionist is expensive. You need phone coverage that pays for itself from day one.</p>
+                </div>
+                <div class="who-card">
+                    <div class="who-card-icon">🌙</div>
+                    <h3>After-Hours Businesses</h3>
+                    <p>Emergency calls come in at night and on weekends. You need someone answering 24/7 without paying overtime.</p>
+                </div>
+                <div class="who-card">
+                    <div class="who-card-icon">📊</div>
+                    <h3>Data-Driven Owners</h3>
+                    <p>You want to know your numbers — close rate, response time, cost per lead — and make decisions based on real data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="faq-inner">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How accurate is this ROI calculator?
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l5 5 5-5"/></svg>
+                </button>
+                <div class="faq-answer">The calculator uses your actual business inputs combined with industry-standard conversion data. We assume Ava recovers about 70% of missed opportunities, which is conservative based on what our customers see. Your actual results may vary based on your market, competition, and service quality.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What does Ava actually do?
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l5 5 5-5"/></svg>
+                </button>
+                <div class="faq-answer">Ava is your AI receptionist. She answers calls in 8 seconds, texts leads back instantly, books appointments on your calendar, and follows up with people who didn't convert. She works 24/7/365 and never calls in sick.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How is this different from a virtual receptionist or answering service?
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l5 5 5-5"/></svg>
+                </button>
+                <div class="faq-answer">Traditional answering services charge per minute and just take messages. Ava actually books appointments, sends follow-up texts, qualifies leads, and reports results — all for a flat $299/month. No per-minute charges, no surprises.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What trades does handled. work with?
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l5 5 5-5"/></svg>
+                </button>
+                <div class="faq-answer">Handled works with all home service trades — plumbing, HVAC, roofing, electrical, solar, painting, landscaping, pest control, fencing, gutters, bathroom remodeling, and more. If you get calls from customers who need work done, Ava can handle it.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How long does it take to set up?
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l5 5 5-5"/></svg>
+                </button>
+                <div class="faq-answer">90 seconds. Seriously. You sign up, pick your trade, forward your phone number, and Ava goes to work. There's no complicated setup, no training, and no waiting period.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Where does the "27% of ad spend wasted" stat come from?
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l5 5 5-5"/></svg>
+                </button>
+                <div class="faq-answer">Industry research shows that roughly 27% of inbound calls from paid ads go unanswered by small businesses. That means over a quarter of the leads you're paying for never even get a conversation. Ava makes sure every call gets answered.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Can I cancel anytime?
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l5 5 5-5"/></svg>
+                </button>
+                <div class="faq-answer">Yes. There are no contracts and no cancellation fees. We keep customers by delivering results, not by locking you in. Most customers see ROI in the first week.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="calc-footer">
+        <p>Stop losing money to missed calls. Everything else is <span>handled.</span></p>
+    </div>
+
+    <script>
+        function formatMoney(n) {
+            return '$' + Math.round(n).toLocaleString();
+        }
+
+        function update() {
+            var missed = Number(document.getElementById('s-missed').value);
+            var job = Number(document.getElementById('s-job').value);
+            var close = Number(document.getElementById('s-close').value);
+            var response = Number(document.getElementById('s-response').value);
+            var adspend = Number(document.getElementById('s-adspend').value);
+
+            // Update displayed slider values
+            document.getElementById('v-missed').textContent = missed;
+            document.getElementById('v-job').textContent = job.toLocaleString();
+            document.getElementById('v-close').textContent = close;
+            document.getElementById('v-response').textContent = response;
+            document.getElementById('v-adspend').textContent = adspend.toLocaleString();
+
+            // Calculate
+            var missedPerMonth = missed * 4.3;
+            var potentialJobsLost = missedPerMonth * (close / 100);
+            var monthlyRevenueLost = potentialJobsLost * job;
+            var yearlyRevenueLost = monthlyRevenueLost * 12;
+            var wastedAdSpend = adspend * 0.27;
+            var handledCost = 299;
+            var roiMultiple = monthlyRevenueLost > 0 ? Math.round(monthlyRevenueLost / handledCost) : 0;
+            var responseImprovement = Math.round(((response * 60 - 8) / (response * 60)) * 100);
+            var jobsRecovered = Math.round(potentialJobsLost * 0.7 * 10) / 10;
+            var revenueRecovered = jobsRecovered * job;
+
+            // Update results
+            document.getElementById('r-missed-month').textContent = Math.round(missedPerMonth);
+            document.getElementById('r-jobs-lost').textContent = Math.round(potentialJobsLost * 10) / 10;
+            document.getElementById('r-jobs-lost-sub').textContent = 'At your ' + close + '% close rate';
+            document.getElementById('r-rev-lost-month').textContent = formatMoney(monthlyRevenueLost);
+            document.getElementById('r-rev-lost-year').textContent = formatMoney(yearlyRevenueLost);
+
+            // Ad waste
+            if (adspend > 0) {
+                document.getElementById('r-adwaste-box').style.display = 'block';
+                document.getElementById('r-adwaste').textContent = formatMoney(wastedAdSpend);
+            } else {
+                document.getElementById('r-adwaste-box').style.display = 'none';
+            }
+
+            // Ava recovers
+            document.getElementById('r-response-sub').textContent = responseImprovement + '% faster than your current ' + response + ' min';
+            document.getElementById('r-jobs-recovered').textContent = jobsRecovered;
+            document.getElementById('r-rev-recovered-month').textContent = formatMoney(revenueRecovered);
+            document.getElementById('r-rev-recovered-year').textContent = formatMoney(revenueRecovered * 12);
+
+            // Bottom line
+            document.getElementById('r-roi-multiple').textContent = roiMultiple + 'x';
+            document.getElementById('r-net-month').textContent = formatMoney(revenueRecovered - handledCost);
+            document.getElementById('r-net-year').textContent = formatMoney((revenueRecovered - handledCost) * 12);
+            document.getElementById('r-bottom-note').textContent = 'For every $1 you spend on Handled, you get $' + roiMultiple + ' back in recovered revenue. That\u2019s ' + roiMultiple + 'x ROI.';
+
+            // CTA
+            document.getElementById('r-cta-cost').textContent = formatMoney(monthlyRevenueLost);
+        }
+
+        // Run on load
+        update();
+
+        // ── Nav dropdown ──
+        function toggleDropdown(id) {
+            var all = document.querySelectorAll('.nav-dropdown');
+            all.forEach(function(dd) {
+                if (dd.id !== id) dd.classList.remove('open');
+            });
+            document.getElementById(id).classList.toggle('open');
+        }
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.nav-dropdown')) {
+                document.querySelectorAll('.nav-dropdown').forEach(function(dd) { dd.classList.remove('open'); });
+            }
+        });
+
+        // ── FAQ toggle ──
+        function toggleFaq(btn) {
+            var item = btn.parentElement;
+            item.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
