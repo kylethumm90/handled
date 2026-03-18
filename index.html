@@ -329,7 +329,9 @@
         }
 
         .hero-cta-btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             padding: 14px 28px;
             background: #fff;
             color: #000;
@@ -347,16 +349,77 @@
             background: rgba(255,255,255,0.9);
         }
 
+        .hero-cta-btn.hero-cta-dark {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #fff;
+        }
+
+        .hero-cta-btn.hero-cta-dark:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .hero-cta-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #4ade80;
+            animation: heroPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes heroPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
+            50% { box-shadow: 0 0 0 6px rgba(74,222,128,0); }
+        }
+
+        .hero-cta-helper {
+            margin-top: 12px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.3);
+        }
+
         .hero-secondary-link {
             display: block;
-            margin-top: 16px;
-            font-size: 0.875rem;
+            margin-top: 12px;
+            font-size: 12px;
             color: rgba(255,255,255,0.4);
             text-decoration: none;
         }
 
         .hero-secondary-link:hover {
             color: rgba(255,255,255,0.6);
+        }
+
+        /* ── Trade Pills ──────────────────────── */
+        .trade-pills-section {
+            background: #080808;
+            text-align: center;
+            padding: 0 20px 80px;
+        }
+
+        .trade-pills-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 16px;
+        }
+
+        .trade-pills-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .trade-pill {
+            display: inline-block;
+            padding: 6px 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 999px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
         }
 
         /* ── Talk with Ava CTA ──────────────── */
@@ -1680,11 +1743,12 @@
         <div class="container">
             <!-- Left column: copy -->
             <div class="hero-left fade-in">
-                <div class="hero-eyebrow">AI team for home service contractors</div>
-                <h1>You were working.<br>The leads got handled.</h1>
-                <p class="hero-sub">Ava books appointments. Stella follows up. Scout tracks everything. All while you're on the job.</p>
-                <a href="#pricing" class="hero-cta-btn">Get early access</a>
-                <a href="#how-it-works" class="hero-secondary-link">See how it works →</a>
+                <div class="hero-eyebrow">AI TEAM FOR HOME SERVICE CONTRACTORS</div>
+                <h1>You show up to the job.<br>We handle everything else.</h1>
+                <p class="hero-sub">Your AI team answers calls, texts leads, books appointments, and gets you reviews. Live in 90 seconds.</p>
+                <a href="#pricing" class="hero-cta-btn hero-cta-dark"><span class="hero-cta-dot"></span>Talk with Ava</a>
+                <div class="hero-cta-helper">Enter your number. Ava will call you right away.</div>
+                <a href="#pricing" class="hero-secondary-link" style="text-decoration: underline;">Or start your 7-day front office takeover →</a>
             </div>
 
             <!-- Right column: phone mockup -->
@@ -1802,6 +1866,21 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Trade Pills -->
+    <section class="trade-pills-section">
+        <div class="trade-pills-label">BUILT FOR EVERY TRADE</div>
+        <div class="trade-pills-row">
+            <span class="trade-pill">Plumbing</span>
+            <span class="trade-pill">HVAC</span>
+            <span class="trade-pill">Roofing</span>
+            <span class="trade-pill">Electrical</span>
+            <span class="trade-pill">Solar</span>
+            <span class="trade-pill">Painting</span>
+            <span class="trade-pill">Landscaping</span>
+            <span class="trade-pill">Pest Control</span>
         </div>
     </section>
 
