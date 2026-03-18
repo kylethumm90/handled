@@ -328,23 +328,38 @@
             line-height: 1.65;
         }
 
-        .hero-cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 16px;
-            padding: 14px 28px;
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 999px;
-            cursor: pointer;
-            text-decoration: none;
-            width: fit-content;
-            transition: all 0.2s ease;
+        /* ── Interactive CTA ─────────────────── */
+        .hero-cta-wrap {
+            position: relative;
         }
 
-        .hero-cta-btn:hover {
-            border-color: rgba(255,255,255,0.3);
-            background: rgba(255,255,255,0.04);
+        .hero-cta-pill {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 999px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .hero-cta-pill:hover {
+            border-color: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.06);
+        }
+
+        /* Collapsed state */
+        .hero-cta-pill.collapsed {
+            gap: 12px;
+            padding: 10px 20px 10px 12px;
+            width: fit-content;
+        }
+
+        /* Expanded state */
+        .hero-cta-pill.expanded {
+            width: 340px;
+            padding: 0;
         }
 
         /* Sonar indicator */
@@ -395,7 +410,7 @@
             100% { transform: scale(1.5); opacity: 0; }
         }
 
-        /* CTA text block */
+        /* CTA text (collapsed) */
         .hero-cta-text {
             display: flex;
             flex-direction: column;
@@ -416,10 +431,103 @@
             line-height: 1.3;
         }
 
-        .hero-cta-helper {
-            margin-top: 12px;
-            font-size: 12px;
+        /* Collapsed content hidden when expanded */
+        .hero-cta-pill.expanded .hero-cta-collapsed-content {
+            display: none;
+        }
+
+        /* Expanded content */
+        .hero-cta-expanded-content {
+            display: none;
+            align-items: center;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.25s ease 0.15s;
+        }
+
+        .hero-cta-pill.expanded .hero-cta-expanded-content {
+            display: flex;
+            opacity: 1;
+        }
+
+        .hero-cta-input-wrap {
+            flex: 1;
+            padding: 0 16px;
+        }
+
+        .hero-cta-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-family: inherit;
+            font-size: 14px;
+            width: 100%;
+            padding: 12px 0 0;
+        }
+
+        .hero-cta-input::placeholder {
             color: rgba(255,255,255,0.3);
+        }
+
+        .hero-cta-input-hint {
+            font-size: 11px;
+            color: rgba(255,255,255,0.3);
+            padding-bottom: 8px;
+            margin-top: -2px;
+        }
+
+        .hero-cta-divider {
+            width: 1px;
+            height: 40px;
+            background: rgba(255,255,255,0.08);
+            flex-shrink: 0;
+        }
+
+        .hero-cta-submit {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 12px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            transition: background 0.15s;
+        }
+
+        .hero-cta-submit:hover {
+            background: rgba(255,255,255,0.04);
+        }
+
+        .hero-cta-submit-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            flex-shrink: 0;
+        }
+
+        /* Consent text */
+        .hero-cta-consent {
+            margin-top: 10px;
+            font-size: 11px;
+            color: rgba(255,255,255,0.25);
+            max-width: 320px;
+            line-height: 1.5;
+            opacity: 0;
+            transition: opacity 0.25s ease 0.2s;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .hero-cta-consent.visible {
+            opacity: 1;
+            height: auto;
         }
 
         .hero-secondary-link {
@@ -1790,18 +1898,35 @@
                 <div class="hero-eyebrow">AI TEAM FOR HOME SERVICE CONTRACTORS</div>
                 <h1>You show up to the job.<br>We handle everything else.</h1>
                 <p class="hero-sub">Your AI team answers calls, texts leads, books appointments, and gets you reviews. Live in 90 seconds.</p>
-                <a href="#pricing" class="hero-cta-btn">
-                    <div class="hero-cta-sonar">
-                        <div class="hero-cta-sonar-outer"></div>
-                        <div class="hero-cta-sonar-middle"></div>
-                        <div class="hero-cta-sonar-core"></div>
+                <div class="hero-cta-wrap" id="hero-cta">
+                    <div class="hero-cta-pill collapsed" id="hero-cta-pill" onmouseenter="expandCta()" onclick="expandCta()">
+                        <!-- Collapsed content -->
+                        <div class="hero-cta-collapsed-content">
+                            <div class="hero-cta-sonar">
+                                <div class="hero-cta-sonar-outer"></div>
+                                <div class="hero-cta-sonar-middle"></div>
+                                <div class="hero-cta-sonar-core"></div>
+                            </div>
+                            <div class="hero-cta-text">
+                                <span class="hero-cta-text-main">Talk with Ava</span>
+                                <span class="hero-cta-text-sub">Live AI demo — no signup needed</span>
+                            </div>
+                        </div>
+                        <!-- Expanded content -->
+                        <div class="hero-cta-expanded-content">
+                            <div class="hero-cta-input-wrap">
+                                <input type="tel" class="hero-cta-input" id="hero-cta-phone" placeholder="Enter your phone number">
+                                <div class="hero-cta-input-hint">AI will call you right away</div>
+                            </div>
+                            <div class="hero-cta-divider"></div>
+                            <button class="hero-cta-submit" type="button">
+                                <span class="hero-cta-submit-dot"></span>
+                                Let's talk
+                            </button>
+                        </div>
                     </div>
-                    <div class="hero-cta-text">
-                        <span class="hero-cta-text-main">Talk with Ava</span>
-                        <span class="hero-cta-text-sub">Live AI demo — no signup needed</span>
-                    </div>
-                </a>
-                <div class="hero-cta-helper">Enter your number. Ava will call you right away.</div>
+                    <div class="hero-cta-consent" id="hero-cta-consent">By submitting, you consent to receive calls or texts from us, including AI-generated calls. Not required to purchase.</div>
+                </div>
                 <a href="#pricing" class="hero-secondary-link" style="text-decoration: underline;">Or start your 7-day front office takeover →</a>
             </div>
 
@@ -2394,6 +2519,33 @@
         }
 
         buildDots(-1);
+
+        // ── Hero CTA expand/collapse ──
+        function expandCta() {
+            var pill = document.getElementById('hero-cta-pill');
+            if (pill.classList.contains('expanded')) return;
+            pill.classList.remove('collapsed');
+            pill.classList.add('expanded');
+            document.getElementById('hero-cta-consent').classList.add('visible');
+            setTimeout(function() {
+                var input = document.getElementById('hero-cta-phone');
+                if (input) input.focus();
+            }, 300);
+        }
+
+        function collapseCta() {
+            var pill = document.getElementById('hero-cta-pill');
+            pill.classList.remove('expanded');
+            pill.classList.add('collapsed');
+            document.getElementById('hero-cta-consent').classList.remove('visible');
+        }
+
+        document.addEventListener('click', function(e) {
+            var wrap = document.getElementById('hero-cta');
+            if (wrap && !wrap.contains(e.target)) {
+                collapseCta();
+            }
+        });
 
         // ── Dropdown close on outside click ──
         function toggleDropdown(id) {
