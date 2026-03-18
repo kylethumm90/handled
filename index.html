@@ -1455,12 +1455,10 @@
         }
 
         .phone-body {
-            flex: 1;
             padding: 0 10px;
             display: flex;
             flex-direction: column;
             gap: 6px;
-            overflow: hidden;
         }
 
         .phone-hero-card {
@@ -1697,65 +1695,68 @@
                             <!-- Dynamic island -->
                             <div class="phone-dynamic-island"></div>
 
-                            <!-- Wordmark -->
-                            <div class="phone-wordmark"><span>handled.</span></div>
+                            <!-- Scaled body content wrapper -->
+                            <div style="transform: scale(0.78); transform-origin: top center; width: 128%; margin-left: -14%;">
+                                <!-- Wordmark -->
+                                <div class="phone-wordmark"><span>handled.</span></div>
 
-                            <!-- Phone body content -->
-                            <div class="phone-body">
-                                <!-- Hero metric card -->
-                                <div class="phone-hero-card">
-                                    <div class="phone-card-label">APPOINTMENTS BOOKED</div>
-                                    <div class="phone-card-value" id="phone-appt-count">46</div>
-                                    <div class="phone-card-delta" id="phone-appt-delta">+12 from last week</div>
-                                </div>
+                                <!-- Phone body content -->
+                                <div class="phone-body">
+                                    <!-- Hero metric card -->
+                                    <div class="phone-hero-card">
+                                        <div class="phone-card-label">APPOINTMENTS BOOKED</div>
+                                        <div class="phone-card-value" id="phone-appt-count">46</div>
+                                        <div class="phone-card-delta" id="phone-appt-delta">+12 from last week</div>
+                                    </div>
 
-                                <!-- 2x2 metric grid -->
-                                <div class="phone-metric-grid">
-                                    <div class="phone-metric-card">
-                                        <div class="phone-metric-label">Leads Contacted</div>
-                                        <div class="phone-metric-value">312</div>
-                                        <div class="phone-metric-delta green">this month</div>
+                                    <!-- 2x2 metric grid -->
+                                    <div class="phone-metric-grid">
+                                        <div class="phone-metric-card">
+                                            <div class="phone-metric-label">Leads Contacted</div>
+                                            <div class="phone-metric-value">312</div>
+                                            <div class="phone-metric-delta green">this month</div>
+                                        </div>
+                                        <div class="phone-metric-card">
+                                            <div class="phone-metric-label">Response Time</div>
+                                            <div class="phone-metric-value">18s</div>
+                                            <div class="phone-metric-delta green">avg</div>
+                                        </div>
+                                        <div class="phone-metric-card">
+                                            <div class="phone-metric-label">Missed Calls</div>
+                                            <div class="phone-metric-value">0</div>
+                                            <div class="phone-metric-delta green">this week</div>
+                                        </div>
+                                        <div class="phone-metric-card">
+                                            <div class="phone-metric-label">Conv. Rate</div>
+                                            <div class="phone-metric-value">15%</div>
+                                            <div class="phone-metric-delta amber">-2% vs goal</div>
+                                        </div>
                                     </div>
-                                    <div class="phone-metric-card">
-                                        <div class="phone-metric-label">Response Time</div>
-                                        <div class="phone-metric-value">18s</div>
-                                        <div class="phone-metric-delta green">avg</div>
-                                    </div>
-                                    <div class="phone-metric-card">
-                                        <div class="phone-metric-label">Missed Calls</div>
-                                        <div class="phone-metric-value">0</div>
-                                        <div class="phone-metric-delta green">this week</div>
-                                    </div>
-                                    <div class="phone-metric-card">
-                                        <div class="phone-metric-label">Conv. Rate</div>
-                                        <div class="phone-metric-value">15%</div>
-                                        <div class="phone-metric-delta amber">-2% vs goal</div>
-                                    </div>
-                                </div>
 
-                                <!-- Agents section -->
-                                <div class="phone-agents">
-                                    <div class="phone-agents-label">YOUR AGENTS</div>
-                                    <div class="phone-agent-row">
-                                        <div class="phone-agent-left">
-                                            <div class="phone-agent-dot"></div>
-                                            <div class="phone-agent-name">Ava</div>
+                                    <!-- Agents section -->
+                                    <div class="phone-agents">
+                                        <div class="phone-agents-label">YOUR AGENTS</div>
+                                        <div class="phone-agent-row">
+                                            <div class="phone-agent-left">
+                                                <div class="phone-agent-dot"></div>
+                                                <div class="phone-agent-name">Ava</div>
+                                            </div>
+                                            <div class="phone-agent-stat">12 calls today</div>
                                         </div>
-                                        <div class="phone-agent-stat">12 calls today</div>
-                                    </div>
-                                    <div class="phone-agent-row">
-                                        <div class="phone-agent-left">
-                                            <div class="phone-agent-dot"></div>
-                                            <div class="phone-agent-name">Stella</div>
+                                        <div class="phone-agent-row">
+                                            <div class="phone-agent-left">
+                                                <div class="phone-agent-dot"></div>
+                                                <div class="phone-agent-name">Stella</div>
+                                            </div>
+                                            <div class="phone-agent-stat">8 follow-ups</div>
                                         </div>
-                                        <div class="phone-agent-stat">8 follow-ups</div>
-                                    </div>
-                                    <div class="phone-agent-row">
-                                        <div class="phone-agent-left">
-                                            <div class="phone-agent-dot"></div>
-                                            <div class="phone-agent-name">Scout</div>
+                                        <div class="phone-agent-row">
+                                            <div class="phone-agent-left">
+                                                <div class="phone-agent-dot"></div>
+                                                <div class="phone-agent-name">Scout</div>
+                                            </div>
+                                            <div class="phone-agent-stat">3 reports</div>
                                         </div>
-                                        <div class="phone-agent-stat">3 reports</div>
                                     </div>
                                 </div>
                             </div>
