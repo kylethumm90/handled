@@ -17,12 +17,13 @@
 
         :root {
             --navy: #0f172a;
-            --amber: #d97706;
-            --amber-hover: #b45309;
+            --amber: #f59e0b;
+            --amber-hover: #d97706;
             --white: #ffffff;
             --gray-light: #94a3b8;
             --gray-dark: #1e293b;
-            --card-bg: #1e293b;
+            --card-bg: #111111;
+            --page-bg: #080808;
         }
 
         html {
@@ -31,8 +32,8 @@
 
         body {
             font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #f5f5f7;
-            color: #1d1d1f;
+            background-color: var(--page-bg);
+            color: #fff;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -45,7 +46,7 @@
             left: 0;
             right: 0;
             z-index: 100;
-            background: rgba(15, 23, 42, 0.92);
+            background: rgba(8, 8, 8, 0.92);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -132,11 +133,11 @@
             top: calc(100% + 8px);
             right: 0;
             min-width: 200px;
-            background: #1e293b;
+            background: #111111;
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             padding: 6px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
         }
 
         .nav-dropdown.open .nav-dropdown-menu {
@@ -167,7 +168,7 @@
             display: inline-block;
             padding: 10px 22px;
             background: var(--amber);
-            color: var(--navy);
+            color: #000;
             font-family: inherit;
             font-size: 0.875rem;
             font-weight: 600;
@@ -186,24 +187,29 @@
         .calc-header {
             padding: 120px 20px 0;
             text-align: center;
-            max-width: 600px;
+            max-width: 640px;
             margin: 0 auto;
         }
 
         .calc-header .brand-label {
-            font-size: 14px;
-            letter-spacing: 3px;
-            color: var(--amber);
+            display: inline-block;
+            font-size: 11px;
             font-weight: 600;
-            margin-bottom: 10px;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 999px;
+            padding: 6px 14px;
+            margin-bottom: 20px;
         }
 
         .calc-header h1 {
-            font-size: 32px;
-            font-weight: 800;
-            color: #1d1d1f;
-            margin: 0 0 8px;
+            font-size: 36px;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 12px;
             line-height: 1.15;
         }
 
@@ -212,16 +218,16 @@
         }
 
         .calc-header p {
-            color: #86868b;
-            font-size: 15px;
-            margin: 0 0 32px;
+            color: rgba(255,255,255,0.4);
+            font-size: 16px;
+            margin: 0 0 40px;
             line-height: 1.5;
         }
 
         .calc-layout {
             max-width: 960px;
             margin: 0 auto;
-            padding: 0 20px 60px;
+            padding: 0 20px 0;
             display: flex;
             gap: 24px;
             flex-wrap: wrap;
@@ -241,17 +247,16 @@
         }
 
         .card {
-            background: #fff;
+            background: var(--card-bg);
             border-radius: 18px;
             padding: 28px 28px 20px;
-            border: 1px solid #e5e5ea;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
         }
 
         .card-title {
             font-size: 15px;
-            font-weight: 700;
-            color: #1d1d1f;
+            font-weight: 600;
+            color: #fff;
             margin-bottom: 24px;
         }
 
@@ -269,19 +274,19 @@
 
         .slider-label {
             font-size: 13px;
-            font-weight: 600;
-            color: #1d1d1f;
+            font-weight: 500;
+            color: #fff;
         }
 
         .slider-value {
             font-size: 22px;
-            font-weight: 800;
+            font-weight: 600;
             color: var(--amber);
         }
 
         .slider-desc {
-            font-size: 11.5px;
-            color: #86868b;
+            font-size: 12px;
+            color: rgba(255,255,255,0.3);
             margin-bottom: 8px;
             line-height: 1.4;
         }
@@ -297,7 +302,7 @@
             display: flex;
             justify-content: space-between;
             font-size: 10px;
-            color: #aeaeb2;
+            color: rgba(255,255,255,0.2);
             margin-top: 3px;
         }
 
@@ -313,84 +318,92 @@
         }
 
         .stat-card {
-            background: #fff;
+            background: rgba(255,255,255,0.03);
             border-radius: 14px;
             padding: 18px 20px;
-            border: 1px solid #e5e5ea;
+            border: 1px solid rgba(255,255,255,0.06);
             flex: 1;
             min-width: 160px;
         }
 
         .stat-card-label {
-            font-size: 11px;
-            color: #86868b;
+            font-size: 10px;
+            color: rgba(255,255,255,0.3);
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.08em;
             margin-bottom: 6px;
         }
 
         .stat-card-value {
             font-size: 26px;
-            font-weight: 800;
-            color: #1d1d1f;
+            font-weight: 700;
+            color: #fff;
             line-height: 1.1;
         }
 
-        .stat-card-value.red { color: #ff3b30; }
-        .stat-card-value.green { color: #34c759; }
+        .stat-card-value.red { color: #ef4444; }
+        .stat-card-value.green { color: #4ade80; }
 
         .stat-card-sub {
             font-size: 11px;
-            color: #86868b;
+            color: rgba(255,255,255,0.3);
             margin-top: 4px;
         }
 
         /* Section labels */
         .section-label-red {
-            font-size: 13px;
-            font-weight: 700;
-            color: #ff3b30;
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.3);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.12em;
             margin-bottom: 16px;
         }
 
         .section-label-green {
-            font-size: 13px;
-            font-weight: 700;
-            color: #34c759;
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(74,222,128,0.5);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.12em;
             margin-bottom: 16px;
         }
 
         .section-label-amber {
-            font-size: 13px;
-            font-weight: 700;
+            font-size: 10px;
+            font-weight: 600;
             color: var(--amber);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.12em;
             margin-bottom: 16px;
         }
 
         /* Warning box */
         .warning-box {
-            background: #fff5f5;
+            background: rgba(239,68,68,0.08);
             border-radius: 10px;
             padding: 12px 16px;
             margin-top: 12px;
-            border: 1px solid #ffdbdb;
+            border: 1px solid rgba(239,68,68,0.15);
             font-size: 12px;
-            color: #ff3b30;
+            color: #ef4444;
+            font-style: italic;
         }
 
-        /* Bottom line dark card */
+        /* Bottom line card — full width hero */
+        .bottom-line-wrap {
+            max-width: 960px;
+            margin: 24px auto 0;
+            padding: 0 20px;
+        }
+
         .bottom-line {
-            background: linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%);
+            background: var(--card-bg);
             border-radius: 18px;
-            padding: 28px 24px;
+            padding: 32px 28px;
             color: #fff;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .bottom-line-grid {
@@ -402,43 +415,74 @@
 
         .bottom-line-item {
             flex: 1;
-            min-width: 140px;
+            min-width: 120px;
         }
 
         .bottom-line-label {
-            font-size: 11px;
-            color: rgba(255,255,255,0.5);
+            font-size: 10px;
+            color: rgba(255,255,255,0.3);
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.08em;
             margin-bottom: 4px;
         }
 
         .bottom-line-value {
-            font-size: 28px;
-            font-weight: 800;
+            font-size: 32px;
+            font-weight: 700;
         }
 
         .bottom-line-value .unit {
             font-size: 14px;
             font-weight: 500;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.3);
         }
 
-        .bottom-line-value.amber { color: var(--amber); }
-        .bottom-line-value.green { color: #34c759; }
-
-        .bottom-line-divider {
-            height: 1px;
-            background: rgba(255,255,255,0.1);
-            margin: 16px 0;
+        .bottom-line-value.amber {
+            color: var(--amber);
+            font-size: 48px;
         }
+
+        .bottom-line-value.green { color: #4ade80; }
 
         .bottom-line-note {
-            margin-top: 16px;
-            font-size: 12px;
+            margin-top: 20px;
+            font-size: 13px;
             color: rgba(255,255,255,0.4);
             line-height: 1.5;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* CTA section */
+        .calc-cta-section {
+            text-align: center;
+            padding: 40px 20px 60px;
+        }
+
+        .calc-cta-btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background: #fff;
+            color: #000;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .calc-cta-btn:hover {
+            background: rgba(255,255,255,0.9);
+        }
+
+        .calc-cta-sub {
+            margin-top: 12px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.3);
         }
 
         /* Comparison card */
@@ -455,17 +499,17 @@
         }
 
         .compare-card.receptionist {
-            background: #f5f5f7;
+            background: rgba(255,255,255,0.04);
         }
 
         .compare-card.ava {
-            background: #f0fdf4;
-            border: 1px solid #bbf7d0;
+            background: rgba(74,222,128,0.06);
+            border: 1px solid rgba(74,222,128,0.15);
         }
 
         .compare-card-label {
             font-size: 10px;
-            color: #86868b;
+            color: rgba(255,255,255,0.3);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -474,26 +518,26 @@
 
         .compare-card-price {
             font-size: 20px;
-            font-weight: 800;
+            font-weight: 700;
         }
 
-        .compare-card-price.red { color: #ff3b30; }
-        .compare-card-price.green { color: #34c759; }
+        .compare-card-price.red { color: #ef4444; }
+        .compare-card-price.green { color: #4ade80; }
 
         .compare-card-price .unit {
             font-size: 11px;
             font-weight: 500;
-            color: #86868b;
+            color: rgba(255,255,255,0.3);
         }
 
         .compare-card-detail {
             font-size: 11px;
-            color: #86868b;
+            color: rgba(255,255,255,0.4);
             margin-top: 2px;
         }
 
         .compare-savings {
-            background: #f5f5f7;
+            background: rgba(255,255,255,0.04);
             border-radius: 10px;
             padding: 10px 14px;
             text-align: center;
@@ -502,15 +546,15 @@
         .compare-savings strong {
             font-size: 13px;
             font-weight: 700;
-            color: #1d1d1f;
+            color: #fff;
         }
 
         .compare-savings span {
             font-size: 12px;
-            color: #86868b;
+            color: rgba(255,255,255,0.4);
         }
 
-        /* CTA at bottom of calculator */
+        /* Old calc-cta kept for disclaimer */
         .calc-cta {
             text-align: center;
             padding: 8px 0 0;
@@ -518,19 +562,19 @@
 
         .calc-cta p {
             font-size: 12px;
-            color: #86868b;
+            color: rgba(255,255,255,0.4);
             margin-bottom: 12px;
         }
 
         .calc-cta .disclaimer {
             font-size: 11px;
-            color: #aeaeb2;
+            color: rgba(255,255,255,0.2);
         }
 
         /* ── Who Is This For ────────────────── */
         .who-section {
             padding: 80px 20px;
-            background: #fff;
+            background: var(--page-bg);
         }
 
         .who-inner {
@@ -540,15 +584,15 @@
 
         .who-section h2 {
             font-size: 28px;
-            font-weight: 800;
-            color: #1d1d1f;
+            font-weight: 700;
+            color: #fff;
             text-align: center;
             margin-bottom: 12px;
         }
 
         .who-section .who-sub {
             font-size: 15px;
-            color: #86868b;
+            color: rgba(255,255,255,0.4);
             text-align: center;
             max-width: 520px;
             margin: 0 auto 40px;
@@ -562,10 +606,10 @@
         }
 
         .who-card {
-            background: #f5f5f7;
+            background: var(--card-bg);
             border-radius: 16px;
             padding: 24px;
-            border: 1px solid #e5e5ea;
+            border: 1px solid rgba(255,255,255,0.06);
         }
 
         .who-card-icon {
@@ -575,21 +619,21 @@
 
         .who-card h3 {
             font-size: 16px;
-            font-weight: 700;
-            color: #1d1d1f;
+            font-weight: 500;
+            color: #fff;
             margin-bottom: 6px;
         }
 
         .who-card p {
             font-size: 13px;
-            color: #86868b;
+            color: rgba(255,255,255,0.4);
             line-height: 1.5;
         }
 
         /* ── FAQ ────────────────────────────── */
         .faq-section {
             padding: 80px 20px;
-            background: #f5f5f7;
+            background: var(--page-bg);
         }
 
         .faq-inner {
@@ -599,16 +643,16 @@
 
         .faq-section h2 {
             font-size: 28px;
-            font-weight: 800;
-            color: #1d1d1f;
+            font-weight: 700;
+            color: #fff;
             text-align: center;
             margin-bottom: 40px;
         }
 
         .faq-item {
-            background: #fff;
+            background: var(--card-bg);
             border-radius: 14px;
-            border: 1px solid #e5e5ea;
+            border: 1px solid rgba(255,255,255,0.06);
             margin-bottom: 12px;
             overflow: hidden;
         }
@@ -625,18 +669,18 @@
             font-family: inherit;
             font-size: 15px;
             font-weight: 600;
-            color: #1d1d1f;
+            color: #fff;
             text-align: left;
         }
 
         .faq-question:hover {
-            background: #fafafa;
+            background: rgba(255,255,255,0.03);
         }
 
         .faq-question svg {
             flex-shrink: 0;
             transition: transform 0.2s;
-            color: #86868b;
+            color: rgba(255,255,255,0.3);
         }
 
         .faq-item.open .faq-question svg {
@@ -647,7 +691,7 @@
             display: none;
             padding: 0 22px 18px;
             font-size: 14px;
-            color: #6e6e73;
+            color: rgba(255,255,255,0.5);
             line-height: 1.6;
         }
 
@@ -659,11 +703,11 @@
         .calc-footer {
             text-align: center;
             padding: 40px 20px;
-            background: #f5f5f7;
+            background: var(--page-bg);
         }
 
         .calc-footer p {
-            color: #aeaeb2;
+            color: rgba(255,255,255,0.2);
             font-size: 12px;
         }
 
@@ -684,6 +728,14 @@
 
             .nav-links {
                 display: none;
+            }
+
+            .bottom-line-value.amber {
+                font-size: 36px;
+            }
+
+            .bottom-line-value {
+                font-size: 24px;
             }
         }
     </style>
@@ -735,9 +787,9 @@
 
     <!-- Header -->
     <div class="calc-header">
-        <div class="brand-label">handled.</div>
+        <div class="brand-label">HANDLED.</div>
         <h1>How Much Are Missed Calls<br>Costing You<span class="accent">?</span></h1>
-        <p>Adjust the sliders to match your business. See exactly what you're losing and what Ava could recover.</p>
+        <p>Move the sliders. See your real numbers.</p>
     </div>
 
     <!-- Calculator -->
@@ -803,7 +855,7 @@
         <div class="calc-right">
             <!-- The Cost of Doing Nothing -->
             <div class="card">
-                <div class="section-label-red">The Cost of Doing Nothing</div>
+                <div class="section-label-red">REVENUE AT RISK</div>
                 <div class="stat-row">
                     <div class="stat-card">
                         <div class="stat-card-label">Missed calls/month</div>
@@ -833,7 +885,7 @@
 
             <!-- What Ava Recovers -->
             <div class="card">
-                <div class="section-label-green">What Ava Recovers</div>
+                <div class="section-label-green">WITH HANDLED.</div>
                 <div class="stat-row">
                     <div class="stat-card">
                         <div class="stat-card-label">Response time</div>
@@ -855,35 +907,6 @@
                         <div class="stat-card-label">Revenue recovered/year</div>
                         <div class="stat-card-value green" id="r-rev-recovered-year">$352,800</div>
                     </div>
-                </div>
-            </div>
-
-            <!-- The Bottom Line -->
-            <div class="bottom-line">
-                <div class="section-label-amber">The Bottom Line</div>
-                <div class="bottom-line-grid">
-                    <div class="bottom-line-item">
-                        <div class="bottom-line-label">Handled costs</div>
-                        <div class="bottom-line-value">$299<span class="unit">/mo</span></div>
-                    </div>
-                    <div class="bottom-line-item">
-                        <div class="bottom-line-label">ROI multiple</div>
-                        <div class="bottom-line-value amber" id="r-roi-multiple">98x</div>
-                    </div>
-                </div>
-                <div class="bottom-line-divider"></div>
-                <div class="bottom-line-grid">
-                    <div class="bottom-line-item">
-                        <div class="bottom-line-label">Net gain/month</div>
-                        <div class="bottom-line-value green" id="r-net-month">$29,101</div>
-                    </div>
-                    <div class="bottom-line-item">
-                        <div class="bottom-line-label">Net gain/year</div>
-                        <div class="bottom-line-value green" id="r-net-year">$349,212</div>
-                    </div>
-                </div>
-                <div class="bottom-line-note" id="r-bottom-note">
-                    For every $1 you spend on Handled, you get $98 back in recovered revenue. That's 98x ROI.
                 </div>
             </div>
 
@@ -911,12 +934,46 @@
                 </div>
             </div>
 
-            <!-- CTA -->
+            <!-- Disclaimer -->
             <div class="calc-cta">
                 <p>Your missed calls cost you <span id="r-cta-cost">$42,000</span>/month. Ava costs $299.</p>
                 <div class="disclaimer">Calculations based on your inputs and industry averages. Actual results may vary.</div>
             </div>
         </div>
+    </div>
+
+    <!-- The Bottom Line — full width -->
+    <div class="bottom-line-wrap">
+        <div class="bottom-line">
+            <div class="section-label-amber">THE BOTTOM LINE</div>
+            <div class="bottom-line-grid">
+                <div class="bottom-line-item">
+                    <div class="bottom-line-label">Handled costs</div>
+                    <div class="bottom-line-value">$299<span class="unit">/mo</span></div>
+                </div>
+                <div class="bottom-line-item">
+                    <div class="bottom-line-label">ROI multiple</div>
+                    <div class="bottom-line-value amber" id="r-roi-multiple">98x</div>
+                </div>
+                <div class="bottom-line-item">
+                    <div class="bottom-line-label">Net gain/month</div>
+                    <div class="bottom-line-value green" id="r-net-month">$29,101</div>
+                </div>
+                <div class="bottom-line-item">
+                    <div class="bottom-line-label">Net gain/year</div>
+                    <div class="bottom-line-value green" id="r-net-year">$349,212</div>
+                </div>
+            </div>
+            <div class="bottom-line-note" id="r-bottom-note">
+                For every $1 you spend on handled. you get $98 back. That's your ROI.
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="calc-cta-section">
+        <a href="index.html#pricing" class="calc-cta-btn">Start Your Free Trial</a>
+        <div class="calc-cta-sub">No credit card. No contract. Cancel anytime.</div>
     </div>
 
     <!-- Who Is This ROI Calculator For? -->
@@ -1083,7 +1140,7 @@
             document.getElementById('r-roi-multiple').textContent = roiMultiple + 'x';
             document.getElementById('r-net-month').textContent = formatMoney(revenueRecovered - handledCost);
             document.getElementById('r-net-year').textContent = formatMoney((revenueRecovered - handledCost) * 12);
-            document.getElementById('r-bottom-note').textContent = 'For every $1 you spend on Handled, you get $' + roiMultiple + ' back in recovered revenue. That\u2019s ' + roiMultiple + 'x ROI.';
+            document.getElementById('r-bottom-note').textContent = 'For every $1 you spend on handled. you get $' + roiMultiple + ' back. That\u2019s your ROI.';
 
             // CTA
             document.getElementById('r-cta-cost').textContent = formatMoney(monthlyRevenueLost);
