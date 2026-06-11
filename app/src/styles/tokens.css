@@ -1,0 +1,56 @@
+/* ── handled. design tokens ──────────────────────────────────
+   Source of truth: Handled hi-fi mockups (Claude design).
+   System: Inter on #FAFAF8 · navy is the working color · amber
+   appears once per screen max (attention + record affordances).
+   8px grid · 12px radii · 1px borders · no drop shadows. */
+
+:root {
+  /* surfaces */
+  --bg: #fafaf8;
+  --card: #ffffff;
+  --bg-soft: #f4f2ec;
+  --bg-cream: #fbfaf7;
+  --bg-hover: #f7f6f2;
+
+  /* ink */
+  --ink: #1a2433;
+  --ink-soft: #3a4453;
+  --muted: #66707e;
+  --faint: #8a93a0;
+  --faintest: #a3aab5;
+  --disabled: #c9cfd8;
+
+  /* working colors */
+  --navy: #0f2a4a;
+  --amber: #f59e0b;
+  --amber-ink: #42300a;
+
+  /* borders */
+  --border: #e6e3dc;
+  --border-light: #efede7;
+  --border-dash: #d8d4cc;
+
+  /* semantic */
+  --success: #2f6b4f;
+  --success-bg: #e9f3ee;
+  --warn: #92600a;
+  --warn-bg: #fdf1d8;
+
+  /* agents — chips appear only next to things they actually did */
+  --ava: #2f6bab;
+  --stella: #b25e45;
+  --scout: #3e7d5c;
+  --scout-bg: #f4f8f5;
+  --scout-border: #dce9e1;
+
+  /* sidebar */
+  --sidebar-text: #a8b6c7;
+  --sidebar-sub: #9db0c5;
+
+  /* shape */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
